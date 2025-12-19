@@ -4,7 +4,6 @@ import { resolve } from 'path'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  root: 'site',
   base: '/MiaoMint-site/',
   plugins: [
     vue(),
@@ -12,12 +11,12 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, '../src'),
+      '@': resolve(__dirname, 'src'),
       '~': resolve(__dirname, 'src')
     }
   },
   build: {
-    outDir: '../dist-site',
+    outDir: 'dist',
     emptyOutDir: true,
     rollupOptions: {
       input: {
