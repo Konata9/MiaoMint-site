@@ -5,8 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   root: 'site',
-  base: '/MiaoMint/',
-  publicDir: '../public',
+  base: '/MiaoMint-site/',
   plugins: [
     vue(),
     tailwindcss()

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Github } from 'lucide-vue-next'
 </script>
 
 <template>
@@ -16,14 +15,6 @@ import { Github } from 'lucide-vue-next'
           </nav>
         </div>
         <div class="flex flex-1 items-center justify-end space-x-2">
-          <nav class="flex items-center">
-            <a target="_blank" rel="noreferrer" href="https://github.com/maochichen/MiaoMint">
-              <div class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 py-2 w-9">
-                <Github class="h-4 w-4" />
-                <span class="sr-only">GitHub</span>
-              </div>
-            </a>
-          </nav>
         </div>
       </div>
     </header>
@@ -33,8 +24,7 @@ import { Github } from 'lucide-vue-next'
     <footer class="py-6 md:px-8 md:py-0">
       <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4">
         <p class="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
-          Built by <a href="https://github.com/maochichen" target="_blank" rel="noreferrer" class="font-medium underline underline-offset-4">maochichen</a>.
-          The source code is available on <a href="https://github.com/maochichen/MiaoMint" target="_blank" rel="noreferrer" class="font-medium underline underline-offset-4">GitHub</a>.
+          Built by <a href="https://github.com/Konata9" target="_blank" rel="noreferrer" class="font-medium underline underline-offset-4">Konata9</a>.
         </p>
       </div>
     </footer>
