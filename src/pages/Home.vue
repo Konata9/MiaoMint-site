@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import Layout from '../Layout.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Search, Shield, Zap, Palette, LayoutGrid, Globe, X } from 'lucide-vue-next'
+import { Search, Shield, Bookmark, Palette, LayoutGrid, Globe, X } from 'lucide-vue-next'
 
 const selectedImage = ref<string | null>(null)
 
@@ -14,7 +14,7 @@ const withBase = (path: string) => {
 }
 
 const screenshots = [
-  { src: '/images/search-tab.png', title: 'Efficient Search' },
+  { src: '/images/search-tab.png', title: 'Search Tabs & Bookmarks' },
   { src: '/images/list-tab.png', title: 'Visual Management' },
   { src: '/images/setting-page.png', title: 'Customizable' }
 ]
@@ -30,7 +30,7 @@ const screenshots = [
           MiaoMint
         </h1>
         <p class="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          A Spotlight-style tab manager for Chrome. Fast, keyboard-centric, and privacy-focused.
+          A Spotlight-style command palette for Chrome. Search tabs and bookmarks, open URLs, and trigger web search.
         </p>
         <div class="space-x-4">
           <!-- <Button size="lg" as-child>
@@ -62,7 +62,7 @@ const screenshots = [
           Features
         </h2>
         <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          Everything you need to manage your tabs efficiently.
+          Everything you need to navigate tabs and bookmarks efficiently.
         </p>
       </div>
       
@@ -73,7 +73,7 @@ const screenshots = [
             <CardTitle class="text-base">Global Spotlight Search</CardTitle>
           </CardHeader>
           <CardContent>
-            Press <code>Alt+M</code> to search tabs anywhere. Use <code>Cmd+Enter</code> for forced web search.
+            Press <code>Alt+M</code> on any page. Use <code>/b</code> for bookmarks and <code>Cmd/Ctrl+Enter</code> to force web search.
           </CardContent>
         </Card>
         
@@ -83,17 +83,17 @@ const screenshots = [
             <CardTitle class="text-base">Mixed Search Logic</CardTitle>
           </CardHeader>
           <CardContent>
-            Intelligently switches between tab matching, URL navigation, and default search engine.
+            Switches between tab search, bookmark search, URL navigation, and web search fallback.
           </CardContent>
         </Card>
 
         <Card class="border-none shadow-none">
           <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Zap class="h-8 w-8 text-yellow-500" />
-            <CardTitle class="text-base">Smart Previews</CardTitle>
+            <Bookmark class="h-8 w-8 text-yellow-500" />
+            <CardTitle class="text-base">Bookmark Search</CardTitle>
           </CardHeader>
           <CardContent>
-            Hover to preview tab thumbnails. LRU cache ensures performance without bloating storage.
+            Search your browser bookmarks by title or URL and open them instantly.
           </CardContent>
         </Card>
 
@@ -113,7 +113,7 @@ const screenshots = [
             <CardTitle class="text-base">Privacy First</CardTitle>
           </CardHeader>
           <CardContent>
-            Local-only data processing. Thumbnails stored locally. No external server tracking.
+            No backend servers. Tabs and bookmarks are processed locally inside your browser.
           </CardContent>
         </Card>
 
