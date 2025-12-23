@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import Layout from '../Layout.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Search, Shield, Bookmark, Palette, LayoutGrid, Globe, X, Clock, Zap } from 'lucide-vue-next'
+import { Search, Shield, Bookmark, Palette, LayoutGrid, Globe, X } from 'lucide-vue-next'
 
 const selectedImage = ref<string | null>(null)
 
@@ -14,126 +14,179 @@ const withBase = (path: string) => {
 }
 
 const screenshots = [
-  { src: '/images/search-tab.png', title: 'Universal Search' },
-  { src: '/images/list-tab.png', title: 'Visual Tab Management' },
-  { src: '/images/setting-page.png', title: 'Deep Customization' }
+  { src: '/images/search-tab.png', title: 'Search Tabs & Bookmarks' },
+  { src: '/images/list-tab.png', title: 'Visual Management' },
+  { src: '/images/setting-page.png', title: 'Customizable' }
+]
+
+const heroBadges = [
+  { label: 'Shortcut', value: 'Alt+M' },
+  { label: 'Bookmark mode', value: '/b' },
+  { label: 'Force search', value: 'Cmd/Ctrl+Enter' },
+  { label: 'Processing', value: 'Local-only' },
+]
+
+const steps = [
+  { title: 'Invoke', description: 'Press Alt+M from any page to toggle the palette.' },
+  { title: 'Navigate', description: 'Use ↑/↓ to move, Enter to open.' },
+  { title: 'Search', description: 'Type for tabs, or use /b for bookmarks.' },
+  { title: 'Fallback', description: 'Open a URL directly or trigger a web search when needed.' },
+]
+
+const features = [
+  {
+    icon: Search,
+    title: 'Global Command Palette',
+    description: 'A Spotlight-style UI on every page. Alt+M to open, ↑/↓ to navigate, Enter to act.',
+    accentClass: 'text-cyan-600 bg-cyan-50 dark:bg-cyan-950/40 dark:text-cyan-300',
+  },
+  {
+    icon: Bookmark,
+    title: 'Bookmark Search',
+    description: 'Type /b to search bookmarks by title or URL and open instantly.',
+    accentClass: 'text-blue-600 bg-blue-50 dark:bg-blue-950/40 dark:text-blue-300',
+  },
+  {
+    icon: LayoutGrid,
+    title: 'Mixed Search Logic',
+    description: 'Tabs, bookmarks, direct URL opening, plus Cmd/Ctrl+Enter to force web search.',
+    accentClass: 'text-indigo-600 bg-indigo-50 dark:bg-indigo-950/40 dark:text-indigo-300',
+  },
+  {
+    icon: Palette,
+    title: 'Personalization',
+    description: 'Multiple themes, opacity control, and a dedicated options page.',
+    accentClass: 'text-fuchsia-600 bg-fuchsia-50 dark:bg-fuchsia-950/40 dark:text-fuchsia-300',
+  },
+  {
+    icon: Shield,
+    title: 'Privacy First',
+    description: 'No backend servers. Tabs and bookmarks are processed locally in your browser.',
+    accentClass: 'text-sky-600 bg-sky-50 dark:bg-sky-950/40 dark:text-sky-300',
+  },
+  {
+    icon: Globe,
+    title: 'Multi-language',
+    description: 'English, Simplified/Traditional Chinese, and Japanese.',
+    accentClass: 'text-violet-600 bg-violet-50 dark:bg-violet-950/40 dark:text-violet-300',
+  },
 ]
 </script>
 
 <template>
   <Layout>
-    <!-- Hero Section -->
-    <section class="space-y-4 pb-6 pt-4 md:pb-8 md:pt-6 lg:py-16">
-      <div class="container mx-auto flex max-w-[64rem] flex-col items-center gap-2 text-center px-4">
-        <img src="/logo.png" alt="MiaoMint Logo" class="w-24 h-24 mb-2" />
-        <h1 class="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-          MiaoMint
-        </h1>
-        <p class="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          Navigate the Web at the Speed of Thought. Search tabs, bookmarks, and history instantly with a single shortcut.
-        </p>
-        <div class="space-x-4">
-          <!-- <Button size="lg" as-child>
-            <a href="https://chrome.google.com/webstore/detail/your-extension-id" target="_blank">Add to Chrome</a>
-          </Button> -->
+    <section class="relative overflow-hidden">
+      <div class="container mx-auto px-4 py-10 md:py-14 lg:py-20">
+        <div class="grid items-center gap-10 md:grid-cols-2">
+          <div class="space-y-6">
+            <div class="flex items-center gap-3">
+              <img src="/logo.png" alt="MiaoMint Logo" class="h-12 w-12" />
+              <div class="text-sm text-muted-foreground">
+                Chrome Extension
+              </div>
+            </div>
+            <h1 class="text-balance font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+              Your browser, controlled like Spotlight.
+            </h1>
+            <p class="text-pretty text-muted-foreground sm:text-lg">
+              MiaoMint is a keyboard-first command palette for Chrome. Search tabs and bookmarks, open URLs, and trigger web search—without leaving your current page.
+            </p>
+
+            <div class="flex flex-wrap gap-2">
+              <div
+                v-for="badge in heroBadges"
+                :key="badge.label"
+                class="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm"
+              >
+                <span class="text-foreground/70">{{ badge.label }}</span>
+                <span class="font-medium text-foreground">{{ badge.value }}</span>
+              </div>
+            </div>
+
+            <div class="flex flex-wrap gap-3">
+              <Button size="lg" as-child>
+                <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank" rel="noreferrer">Add to Chrome</a>
+              </Button>
+              <Button size="lg" variant="outline" as-child>
+                <a href="#screenshots">Browse screenshots</a>
+              </Button>
+            </div>
+          </div>
+
+          <div class="relative">
+            <div class="absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-tr from-cyan-200/40 via-blue-200/40 to-fuchsia-200/40 blur-2xl dark:from-cyan-950/40 dark:via-blue-950/30 dark:to-fuchsia-950/40" />
+            <Card class="overflow-hidden border shadow-2xl">
+              <CardContent class="p-0">
+                <div class="aspect-video w-full">
+                  <iframe
+                    width="100%"
+                    height="100%"
+                    class="h-full w-full"
+                    src="https://www.youtube.com/embed/eJVA4LdIj5I"
+                    title="MiaoMint Demo"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+              </CardContent>
+            </Card>
+            <div class="mt-3 flex items-center justify-between text-sm text-muted-foreground">
+              <div>Quick demo</div>
+              <a class="underline underline-offset-4" href="https://www.youtube.com/watch?v=eJVA4LdIj5I" target="_blank" rel="noreferrer">Open on YouTube</a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Demo Video Section -->
-    <section class="container mx-auto px-4 py-8 flex justify-center">
-      <div class="w-full max-w-4xl aspect-video rounded-xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
-        <iframe 
-          width="100%" 
-          height="100%" 
-          src="https://www.youtube.com/embed/eJVA4LdIj5I" 
-          title="MiaoMint Demo" 
-          frameborder="0" 
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen
-        ></iframe>
+    <section class="border-y bg-muted/30">
+      <div class="container mx-auto px-4 py-10">
+        <div class="grid gap-6 md:grid-cols-4">
+          <div v-for="step in steps" :key="step.title" class="space-y-2">
+            <div class="text-sm font-medium text-foreground">{{ step.title }}</div>
+            <div class="text-sm text-muted-foreground">{{ step.description }}</div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="container mx-auto space-y-6 bg-slate-50 py-8 dark:bg-transparent md:py-12 lg:py-24 px-4">
-      <div class="mx-auto flex max-w-[58rem] flex-col items-center space-y-4 text-center mb-10">
-        <h2 class="font-heading text-3xl leading-[1.1] sm:text-3xl md:text-6xl font-bold">
-          Features
-        </h2>
-        <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          A powerful command palette designed for keyboard-centric productivity.
+    <section id="features" class="container mx-auto px-4 py-12 md:py-16 lg:py-24">
+      <div class="mx-auto max-w-3xl text-center space-y-4">
+        <div class="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground">
+          <span>Fast</span>
+          <span class="text-foreground/50">•</span>
+          <span>Keyboard-first</span>
+          <span class="text-foreground/50">•</span>
+          <span>Privacy-focused</span>
+        </div>
+        <h2 class="text-balance font-heading text-3xl font-bold sm:text-4xl md:text-5xl">Feature highlights</h2>
+        <p class="text-pretty text-muted-foreground sm:text-lg">
+          Designed around a single flow: invoke, search, and open.
         </p>
       </div>
-      
-      <div class="mx-auto grid justify-center gap-4 sm:grid-cols-2 md:max-w-[64rem] md:grid-cols-3">
-        <Card class="border-none shadow-none">
-          <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Search class="h-8 w-8 text-blue-500" />
-            <CardTitle class="text-base">Instant Command Center</CardTitle>
-          </CardHeader>
-          <CardContent>
-            Press <code>Alt+M</code> to take control. Navigate your entire browser—tabs, bookmarks, and history—without lifting your hands.
-          </CardContent>
-        </Card>
-        
-        <Card class="border-none shadow-none">
-          <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <LayoutGrid class="h-8 w-8 text-green-500" />
-            <CardTitle class="text-base">Smart Context Switching</CardTitle>
-          </CardHeader>
-          <CardContent>
-            Intelligent routing handles URLs, search queries, and open tabs. Use <code>Cmd/Ctrl+Enter</code> to force a web search anytime.
-          </CardContent>
-        </Card>
 
-        <Card class="border-none shadow-none">
-          <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Clock class="h-8 w-8 text-yellow-500" />
-            <CardTitle class="text-base">Powerful Search Modes</CardTitle>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <Card v-for="feature in features" :key="feature.title" class="border bg-background/60">
+          <CardHeader class="space-y-2">
+            <div class="flex items-center gap-3">
+              <div class="flex h-10 w-10 items-center justify-center rounded-xl" :class="feature.accentClass">
+                <component :is="feature.icon" class="h-5 w-5" />
+              </div>
+              <CardTitle class="text-base">{{ feature.title }}</CardTitle>
+            </div>
           </CardHeader>
-          <CardContent>
-            Filter with precision. Use <code>/b</code> to search bookmarks and <code>/h</code> to rediscover your browsing history instantly.
-          </CardContent>
-        </Card>
-
-        <Card class="border-none shadow-none">
-          <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Palette class="h-8 w-8 text-purple-500" />
-            <CardTitle class="text-base">Beautifully Customizable</CardTitle>
-          </CardHeader>
-          <CardContent>
-            Choose from 6 professionally designed themes including Mint and Ice Blue. Fine-tune opacity to match your workflow.
-          </CardContent>
-        </Card>
-
-        <Card class="border-none shadow-none">
-          <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Shield class="h-8 w-8 text-red-500" />
-            <CardTitle class="text-base">Privacy First Architecture</CardTitle>
-          </CardHeader>
-          <CardContent>
-            Zero data collection. No servers. Your browsing habits, history, and bookmarks are processed entirely within your local browser.
-          </CardContent>
-        </Card>
-
-        <Card class="border-none shadow-none">
-          <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Zap class="h-8 w-8 text-indigo-500" />
-            <CardTitle class="text-base">Lightning Fast & Global</CardTitle>
-          </CardHeader>
-          <CardContent>
-            Native support for English, Chinese, and Japanese. Optimized with lazy loading for instant performance even with thousands of items.
+          <CardContent class="text-sm text-muted-foreground">
+            {{ feature.description }}
           </CardContent>
         </Card>
       </div>
     </section>
 
-    <!-- Screenshots Section -->
-    <section class="container mx-auto px-4 py-12 space-y-8">
+    <section id="screenshots" class="container mx-auto px-4 py-12 space-y-8">
       <div class="text-center space-y-4">
         <h2 class="text-3xl font-bold md:text-5xl">Screenshots</h2>
-        <p class="text-muted-foreground text-lg">A closer look at the experience.</p>
+        <p class="text-muted-foreground text-lg">A closer look at the UI.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start max-w-7xl mx-auto">
