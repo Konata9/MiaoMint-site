@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import Layout from '../Layout.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
-import { Search, Shield, Bookmark, Palette, LayoutGrid, Globe, X } from 'lucide-vue-next'
+import { Search, Shield, Bookmark, Palette, LayoutGrid, Globe, X, Clock, Zap } from 'lucide-vue-next'
 
 const selectedImage = ref<string | null>(null)
 
@@ -14,9 +14,9 @@ const withBase = (path: string) => {
 }
 
 const screenshots = [
-  { src: '/images/search-tab.png', title: 'Search Tabs & Bookmarks' },
-  { src: '/images/list-tab.png', title: 'Visual Management' },
-  { src: '/images/setting-page.png', title: 'Customizable' }
+  { src: '/images/search-tab.png', title: 'Universal Search' },
+  { src: '/images/list-tab.png', title: 'Visual Tab Management' },
+  { src: '/images/setting-page.png', title: 'Deep Customization' }
 ]
 </script>
 
@@ -30,7 +30,7 @@ const screenshots = [
           MiaoMint
         </h1>
         <p class="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          A Spotlight-style command palette for Chrome. Search tabs and bookmarks, open URLs, and trigger web search.
+          Navigate the Web at the Speed of Thought. Search tabs, bookmarks, and history instantly with a single shortcut.
         </p>
         <div class="space-x-4">
           <!-- <Button size="lg" as-child>
@@ -62,7 +62,7 @@ const screenshots = [
           Features
         </h2>
         <p class="max-w-[85%] leading-normal text-muted-foreground sm:text-lg sm:leading-7">
-          Everything you need to navigate tabs and bookmarks efficiently.
+          A powerful command palette designed for keyboard-centric productivity.
         </p>
       </div>
       
@@ -70,60 +70,60 @@ const screenshots = [
         <Card class="border-none shadow-none">
           <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
             <Search class="h-8 w-8 text-blue-500" />
-            <CardTitle class="text-base">Global Spotlight Search</CardTitle>
+            <CardTitle class="text-base">Instant Command Center</CardTitle>
           </CardHeader>
           <CardContent>
-            Press <code>Alt+M</code> on any page. Use <code>/b</code> for bookmarks and <code>Cmd/Ctrl+Enter</code> to force web search.
+            Press <code>Alt+M</code> to take control. Navigate your entire browser—tabs, bookmarks, and history—without lifting your hands.
           </CardContent>
         </Card>
         
         <Card class="border-none shadow-none">
           <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
             <LayoutGrid class="h-8 w-8 text-green-500" />
-            <CardTitle class="text-base">Mixed Search Logic</CardTitle>
+            <CardTitle class="text-base">Smart Context Switching</CardTitle>
           </CardHeader>
           <CardContent>
-            Switches between tab search, bookmark search, URL navigation, and web search fallback.
+            Intelligent routing handles URLs, search queries, and open tabs. Use <code>Cmd/Ctrl+Enter</code> to force a web search anytime.
           </CardContent>
         </Card>
 
         <Card class="border-none shadow-none">
           <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Bookmark class="h-8 w-8 text-yellow-500" />
-            <CardTitle class="text-base">Bookmark Search</CardTitle>
+            <Clock class="h-8 w-8 text-yellow-500" />
+            <CardTitle class="text-base">Powerful Search Modes</CardTitle>
           </CardHeader>
           <CardContent>
-            Search your browser bookmarks by title or URL and open them instantly.
+            Filter with precision. Use <code>/b</code> to search bookmarks and <code>/h</code> to rediscover your browsing history instantly.
           </CardContent>
         </Card>
 
         <Card class="border-none shadow-none">
           <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
             <Palette class="h-8 w-8 text-purple-500" />
-            <CardTitle class="text-base">Personalization</CardTitle>
+            <CardTitle class="text-base">Beautifully Customizable</CardTitle>
           </CardHeader>
           <CardContent>
-            Multiple themes (White, Ice Blue, Mint...), custom opacity, and independent settings page.
+            Choose from 6 professionally designed themes including Mint and Ice Blue. Fine-tune opacity to match your workflow.
           </CardContent>
         </Card>
 
         <Card class="border-none shadow-none">
           <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
             <Shield class="h-8 w-8 text-red-500" />
-            <CardTitle class="text-base">Privacy First</CardTitle>
+            <CardTitle class="text-base">Privacy First Architecture</CardTitle>
           </CardHeader>
           <CardContent>
-            No backend servers. Tabs and bookmarks are processed locally inside your browser.
+            Zero data collection. No servers. Your browsing habits, history, and bookmarks are processed entirely within your local browser.
           </CardContent>
         </Card>
 
         <Card class="border-none shadow-none">
           <CardHeader class="flex flex-row items-center gap-4 space-y-0 pb-2">
-            <Globe class="h-8 w-8 text-indigo-500" />
-            <CardTitle class="text-base">Multi-language</CardTitle>
+            <Zap class="h-8 w-8 text-indigo-500" />
+            <CardTitle class="text-base">Lightning Fast & Global</CardTitle>
           </CardHeader>
           <CardContent>
-            Supports English, Simplified/Traditional Chinese, and Japanese. Auto-detects browser language.
+            Native support for English, Chinese, and Japanese. Optimized with lazy loading for instant performance even with thousands of items.
           </CardContent>
         </Card>
       </div>

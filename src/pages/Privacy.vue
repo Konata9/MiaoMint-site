@@ -28,17 +28,22 @@ import Layout from '../Layout.vue'
           When you use bookmark search (e.g. bookmark mode), MiaoMint reads your browser bookmarks' titles and URLs to provide local search and open-bookmark functionality. Bookmark data is processed locally in your browser and is not transmitted to us.
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.3 Search Queries</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">2.3 History Information</h3>
+        <p class="mb-4">
+          When you use history search (e.g. history mode), MiaoMint searches your browsing history to provide local search and open-history functionality. History data is processed locally in your browser and is not transmitted to us.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">2.4 Search Queries</h3>
         <p class="mb-4">
           If you choose to run a web search from MiaoMint, your query is passed to your browser's built-in search feature (e.g. <code>chrome.search.query</code>) and will be handled by your default search engine according to its own privacy policy. We do not receive or store your search queries.
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.4 User Settings</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">2.5 User Settings</h3>
         <p class="mb-4">
           Your preferences (theme, opacity, etc.) are stored using <code>chrome.storage.sync</code>. If you have Chrome Sync enabled, these settings may be synchronized across your signed-in Chrome devices by Google as part of the browser's sync feature. You can control this behavior in your browser sync settings.
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.5 Keyboard Interactions</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">2.6 Keyboard Interactions</h3>
         <p class="mb-4">
           MiaoMint uses keyboard events to support the command shortcut and in-UI navigation (e.g. Escape, Arrow keys, Enter). These events are not recorded, stored, or sent to us.
         </p>
@@ -54,6 +59,7 @@ import Layout from '../Layout.vue'
           <li><strong>Read and change all your data on the websites you visit (`&lt;all_urls&gt;`)</strong>: This permission is technically required to inject the MiaoMint search bar (Spotlight-like UI) into every page you visit so you can invoke it with a shortcut. We do not read page content other than to display the search bar.</li>
           <li><strong>Tabs</strong>: Required to list your currently open tabs (title, URL) so you can search and switch between them.</li>
           <li><strong>Bookmarks</strong>: Required to list your browser bookmarks (title, URL) so you can search and open them.</li>
+          <li><strong>History</strong>: Required to search your browser history (title, URL) so you can find and open visited pages.</li>
           <li><strong>Storage</strong>: Required to save your preferences (theme, opacity, language).</li>
           <li><strong>Search</strong>: Required to trigger a web search using your browser's default search engine when you choose to do so.</li>
           <li><strong>Active Tab</strong>: Required to interact with the currently active tab when you invoke the extension (e.g. showing the UI and opening a selected result).</li>
@@ -68,7 +74,12 @@ import Layout from '../Layout.vue'
           <li>If you have Chrome Sync enabled, you can disable sync or clear synced data via your browser sync settings.</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4">6. Contact</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">6. Changes to This Policy</h2>
+        <p class="mb-4">
+          We may update this privacy policy from time to time. If we make significant changes, we will notify you by updating the date at the top of this policy and, where appropriate, through the extension.
+        </p>
+
+        <h2 class="text-2xl font-semibold mt-8 mb-4">7. Contact</h2>
         <p class="mb-4">
           If you have questions about this policy, please contact us via the Chrome Web Store support tab.
         </p>
