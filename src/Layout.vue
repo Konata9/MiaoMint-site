@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Button } from '@/components/ui/button'
 </script>
 
 <template>
@@ -15,6 +16,9 @@
           </nav>
         </div>
         <div class="flex flex-1 items-center justify-end space-x-2">
+          <Button size="sm" as-child>
+            <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank" rel="noreferrer">Add to Chrome</a>
+          </Button>
         </div>
       </div>
     </header>
