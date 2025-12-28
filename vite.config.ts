@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: '/MiaoMint-site/',
+  base: '/',
   plugins: [
     vue(),
     tailwindcss()
