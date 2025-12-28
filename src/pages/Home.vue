@@ -14,9 +14,9 @@ const withBase = (path: string) => {
 }
 
 const screenshots = [
-  { src: '/images/search-tab.png', title: 'Command Palette' },
-  { src: '/images/list-tab.png', title: 'Fast Switching' },
-  { src: '/images/setting-page.png', title: 'Settings & Themes' }
+  { src: '/images/search-tab.png', title: 'MiaoMint command palette screenshot' },
+  { src: '/images/list-tab.png', title: 'MiaoMint fast tab switching screenshot' },
+  { src: '/images/setting-page.png', title: 'MiaoMint settings and themes screenshot' }
 ]
 
 const heroBadges = [
@@ -73,7 +73,7 @@ const features = [
         <div class="grid items-center gap-10 md:grid-cols-2">
           <div class="space-y-6">
             <div class="flex items-center gap-3">
-              <img src="/logo.png" alt="MiaoMint Logo" class="h-12 w-12" />
+              <img :src="withBase('/logo.png')" alt="MiaoMint logo" class="h-12 w-12" />
               <div class="text-sm text-muted-foreground">
                 Chrome Extension
               </div>
