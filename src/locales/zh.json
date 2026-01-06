@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title_prefix": "浏览器工作流的",
+    "title_highlight": "聚焦搜索",
+    "description": "按下 <span class=\"rounded-md bg-muted px-1.5 py-0.5 font-medium text-foreground border border-border/50\">Opt/Alt + M</span>。即刻搜索 Chrome 标签页、书签和历史记录。不再翻找，直接触达。",
+    "badge_shortcut": "快捷键",
+    "badge_bookmarks": "书签",
+    "badge_history": "历史",
+    "badge_privacy": "隐私",
+    "badge_privacy_value": "仅本地",
+    "btn_add": "添加到 Chrome - 免费",
+    "btn_highlights": "查看亮点",
+    "privacy_note": "本地隐私保护。任何数据都不会离开你的设备。"
+  },
+  "steps": {
+    "invoke_title": "唤起",
+    "invoke_desc": "在任何页面按下 Opt/Alt + M 打开。",
+    "search_title": "搜索",
+    "search_desc": "默认搜标签页。/b 搜书签。/h 搜历史。/setting 打开设置。",
+    "open_title": "打开",
+    "open_desc": "回车打开。Cmd/Ctrl + 回车强制网页搜索。"
+  },
+  "features": {
+    "tag_fast": "快速",
+    "tag_keyboard": "键盘优先",
+    "tag_privacy": "隐私专注",
+    "title": "功能预览",
+    "subtitle": "围绕一个核心流程设计：唤起、搜索、打开。",
+    "unified_title": "统一搜索",
+    "unified_desc": "一个输入框搞定标签页、书签、历史记录、URL 导航和网页搜索。",
+    "keyboard_title": "键盘工作流",
+    "keyboard_desc": "Opt/Alt + M 打开，↑/↓ 导航，回车打开，Esc 关闭。",
+    "command_title": "命令模式",
+    "command_desc": "使用 /b 搜书签，/h 搜历史，/setting 打开偏好设置。",
+    "polished_title": "精致与个性化",
+    "polished_desc": "支持主题、透明度控制和多语言界面，即时更新。",
+    "privacy_title": "隐私设计",
+    "privacy_desc": "无后端。你的数据仅保留在设备上，仅用于搜索和导航。"
+  },
+  "cta": {
+    "title": "准备好提升工作流了吗？",
+    "desc": "加入那些不再翻找标签页，而是即刻触达的用户行列。",
+    "btn_add": "免费添加到 Chrome",
+    "btn_github": "在 GitHub 查看",
+    "footer": "开源 • 本地数据 • 无追踪"
+  },
+  "layout": {
+    "home": "首页",
+    "privacy": "隐私",
+    "language": "切换语言",
+    "add_to_chrome": "添加到 Chrome",
+    "built_by": "由 Konata9 构建。"
+  },
+  "meta": {
+    "title": "MiaoMint — Chrome 标签页、书签和历史记录的命令面板",
+    "privacy_title": "隐私政策 - MiaoMint"
+  }
+}

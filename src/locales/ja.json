@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title_prefix": "ブラウザワークフローのための",
+    "title_highlight": "Spotlight",
+    "description": "<span class=\"rounded-md bg-muted px-1.5 py-0.5 font-medium text-foreground border border-border/50\">Opt/Alt + M</span> を押して、Chrome のタブ、ブックマーク、履歴を即座に検索。探す時間を減らし、見つける時間を増やしましょう。",
+    "badge_shortcut": "ショートカット",
+    "badge_bookmarks": "ブックマーク",
+    "badge_history": "履歴",
+    "badge_privacy": "プライバシー",
+    "badge_privacy_value": "ローカルのみ",
+    "btn_add": "Chrome に追加 - 無料",
+    "btn_highlights": "ハイライトを見る",
+    "privacy_note": "ローカルのみのプライバシー。データがデバイスから離れることはありません。"
+  },
+  "steps": {
+    "invoke_title": "起動",
+    "invoke_desc": "どのページからでも Opt/Alt + M で開きます。",
+    "search_title": "検索",
+    "search_desc": "デフォルトはタブ。/b でブックマーク。/h で履歴。/setting で設定。",
+    "open_title": "開く",
+    "open_desc": "Enter で開く。Cmd/Ctrl + Enter で強制的にウェブ検索。"
+  },
+  "features": {
+    "tag_fast": "高速",
+    "tag_keyboard": "キーボード優先",
+    "tag_privacy": "プライバシー重視",
+    "title": "機能とプレビュー",
+    "subtitle": "起動、検索、開く。この一つのフローを中心に設計されています。",
+    "unified_title": "統合検索",
+    "unified_desc": "タブ、ブックマーク、履歴、URL ナビゲーション、ウェブ検索を一つの入力で。",
+    "keyboard_title": "キーボードワークフロー",
+    "keyboard_desc": "Opt/Alt + M で開き、↑/↓ で移動、Enter で開き、Esc で閉じます。",
+    "command_title": "コマンドモード",
+    "command_desc": "/b でブックマーク、/h で履歴、/setting で設定を開きます。",
+    "polished_title": "洗練されたパーソナライズ",
+    "polished_desc": "テーマ、不透明度、多言語 UI を即座に反映。",
+    "privacy_title": "プライバシー設計",
+    "privacy_desc": "バックエンドなし。データはデバイス上に留まり、検索とナビゲーションにのみ使用されます。"
+  },
+  "cta": {
+    "title": "ワークフローを加速させましょう",
+    "desc": "タブを探すのをやめ、すぐに見つけているユーザーの仲間入りをしましょう。",
+    "btn_add": "Chrome に追加 - 無料",
+    "btn_github": "GitHub で見る",
+    "footer": "オープンソース • ローカルデータ • トラッキングなし"
+  },
+  "layout": {
+    "home": "ホーム",
+    "privacy": "プライバシー",
+    "language": "言語を切り替え",
+    "add_to_chrome": "Chrome に追加",
+    "built_by": "Konata9 によって構築。"
+  },
+  "meta": {
+    "title": "MiaoMint — Chrome タブ、ブックマーク、履歴のためのコマンドパレット",
+    "privacy_title": "プライバシーポリシー - MiaoMint"
+  }
+}

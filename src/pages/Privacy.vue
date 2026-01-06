@@ -1,5 +1,10 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+import { useTitle } from '@vueuse/core'
 import Layout from '../Layout.vue'
+
+const { t } = useI18n()
+useTitle(() => t('meta.privacy_title'))
 </script>
 
 <template>

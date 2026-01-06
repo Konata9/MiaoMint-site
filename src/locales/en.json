@@ -1,0 +1,58 @@
+{
+  "hero": {
+    "title_prefix": "Spotlight for your",
+    "title_highlight": "browser workflow",
+    "description": "Press <span class=\"rounded-md bg-muted px-1.5 py-0.5 font-medium text-foreground border border-border/50\">Opt/Alt + M</span>. Search Chrome tabs, bookmarks, and history instantly. Stop digging, start finding.",
+    "badge_shortcut": "Shortcut",
+    "badge_bookmarks": "Bookmarks",
+    "badge_history": "History",
+    "badge_privacy": "Privacy",
+    "badge_privacy_value": "Local-only",
+    "btn_add": "Add to Chrome - It's Free",
+    "btn_highlights": "See highlights",
+    "privacy_note": "Local-only privacy. No data leaves your device."
+  },
+  "steps": {
+    "invoke_title": "Invoke",
+    "invoke_desc": "Press Opt/Alt + M to open from any page.",
+    "search_title": "Search",
+    "search_desc": "Tabs by default. /b bookmarks. /h history. /setting settings.",
+    "open_title": "Open",
+    "open_desc": "Enter to open. Cmd/Ctrl + Enter forces web search."
+  },
+  "features": {
+    "tag_fast": "Fast",
+    "tag_keyboard": "Keyboard-first",
+    "tag_privacy": "Privacy-focused",
+    "title": "Features & Preview",
+    "subtitle": "Designed around one flow: invoke, search, open.",
+    "unified_title": "Unified Search",
+    "unified_desc": "One input for tabs, bookmarks, history, URL navigation, and web search fallback.",
+    "keyboard_title": "Keyboard Workflow",
+    "keyboard_desc": "Opt/Alt + M to open, ↑/↓ to navigate, Enter to open, Esc to close.",
+    "command_title": "Command Modes",
+    "command_desc": "Use /b for bookmarks, /h for history, and /setting to open preferences.",
+    "polished_title": "Polished & Personal",
+    "polished_desc": "Themes, opacity control, and multilingual UI with instant updates.",
+    "privacy_title": "Privacy by Design",
+    "privacy_desc": "No backend. Your data stays on-device, only used to power search and navigation."
+  },
+  "cta": {
+    "title": "Ready to speed up your workflow?",
+    "desc": "Join users who have stopped digging through tabs and started finding them instantly.",
+    "btn_add": "Add to Chrome for Free",
+    "btn_github": "View on GitHub",
+    "footer": "Open Source • Local Data • No Tracking"
+  },
+  "layout": {
+    "home": "Home",
+    "privacy": "Privacy",
+    "language": "Switch Language",
+    "add_to_chrome": "Add to Chrome",
+    "built_by": "Built by Konata9."
+  },
+  "meta": {
+    "title": "MiaoMint — Command Palette for Chrome Tabs, Bookmarks & History",
+    "privacy_title": "Privacy Policy - MiaoMint"
+  }
+}

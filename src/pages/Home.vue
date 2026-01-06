@@ -1,9 +1,14 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useTitle } from '@vueuse/core'
 import Layout from '../Layout.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card'
 import { Search, Shield, Bookmark, Palette, LayoutGrid, X } from 'lucide-vue-next'
+
+const { t } = useI18n()
+useTitle(() => t('meta.title'))
 
 const selectedImage = ref<string | null>(null)
 const activeFeatureIndex = ref(0)
@@ -14,56 +19,56 @@ const withBase = (path: string) => {
   return `${base}${cleanPath}`
 }
 
-const features = [
+const features = computed(() => [
   {
     icon: Search,
-    title: 'Unified Search',
-    description: 'One input for tabs, bookmarks, history, URL navigation, and web search fallback.',
+    title: t('features.unified_title'),
+    description: t('features.unified_desc'),
     accentClass: 'text-cyan-600 bg-cyan-50 dark:bg-cyan-950/40 dark:text-cyan-300',
     image: '/images/search-tab.png'
   },
   {
     icon: LayoutGrid,
-    title: 'Keyboard Workflow',
-    description: 'Opt/Alt + M to open, ↑/↓ to navigate, Enter to open, Esc to close.',
+    title: t('features.keyboard_title'),
+    description: t('features.keyboard_desc'),
     accentClass: 'text-blue-600 bg-blue-50 dark:bg-blue-950/40 dark:text-blue-300',
     image: '/images/list-tab.png'
   },
   {
     icon: Bookmark,
-    title: 'Command Modes',
-    description: 'Use /b for bookmarks, /h for history, and /setting to open preferences.',
+    title: t('features.command_title'),
+    description: t('features.command_desc'),
     accentClass: 'text-indigo-600 bg-indigo-50 dark:bg-indigo-950/40 dark:text-indigo-300',
     image: '/images/list-bookmark.png'
   },
   {
     icon: Palette,
-    title: 'Polished & Personal',
-    description: 'Themes, opacity control, and multilingual UI with instant updates.',
+    title: t('features.polished_title'),
+    description: t('features.polished_desc'),
     accentClass: 'text-fuchsia-600 bg-fuchsia-50 dark:bg-fuchsia-950/40 dark:text-fuchsia-300',
     image: '/images/setting-page.png'
   },
   {
     icon: Shield,
-    title: 'Privacy by Design',
-    description: 'No backend. Your data stays on-device, only used to power search and navigation.',
+    title: t('features.privacy_title'),
+    description: t('features.privacy_desc'),
     accentClass: 'text-sky-600 bg-sky-50 dark:bg-sky-950/40 dark:text-sky-300',
     image: '/images/list-history.png'
   },
-]
+])
 
-const heroBadges = [
-  { label: 'Shortcut', value: 'Opt/Alt + M' },
-  { label: 'Bookmarks', value: '/b' },
-  { label: 'History', value: '/h' },
-  { label: 'Privacy', value: 'Local-only' },
-]
+const heroBadges = computed(() => [
+  { label: t('hero.badge_shortcut'), value: 'Opt/Alt + M' },
+  { label: t('hero.badge_bookmarks'), value: '/b' },
+  { label: t('hero.badge_history'), value: '/h' },
+  { label: t('hero.badge_privacy'), value: t('hero.badge_privacy_value') },
+])
 
-const steps = [
-  { title: 'Invoke', description: 'Press Opt/Alt + M to open from any page.' },
-  { title: 'Search', description: 'Tabs by default. /b bookmarks. /h history. /setting settings.' },
-  { title: 'Open', description: 'Enter to open. Cmd/Ctrl + Enter forces web search.' },
-]
+const steps = computed(() => [
+  { title: t('steps.invoke_title'), description: t('steps.invoke_desc') },
+  { title: t('steps.search_title'), description: t('steps.search_desc') },
+  { title: t('steps.open_title'), description: t('steps.open_desc') },
+])
 </script>
 
 <template>
@@ -90,10 +95,9 @@ const steps = [
             
             <div class="space-y-4">
               <h1 class="text-balance font-heading text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl animate-fade-in-up opacity-0 animation-delay-100">
-                Spotlight for your <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">browser workflow</span>.
+                {{ t('hero.title_prefix') }} <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-600">{{ t('hero.title_highlight') }}</span>.
               </h1>
-              <p class="text-pretty text-muted-foreground sm:text-lg animate-fade-in-up opacity-0 animation-delay-200">
-                Press <span class="rounded-md bg-muted px-1.5 py-0.5 font-medium text-foreground border border-border/50">Opt/Alt + M</span>. Search tabs, bookmarks, and history instantly. Stop digging, start finding.
+              <p class="text-pretty text-muted-foreground sm:text-lg animate-fade-in-up opacity-0 animation-delay-200" v-html="t('hero.description')">
               </p>
             </div>
 
@@ -111,17 +115,17 @@ const steps = [
             <div class="flex flex-wrap gap-4 animate-fade-in-up opacity-0 animation-delay-500">
               <Button size="lg" class="h-12 px-8 text-base shadow-lg shadow-blue-500/20 transition-transform hover:scale-105 active:scale-95" as-child>
                 <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank" rel="noreferrer">
-                  Add to Chrome - It's Free
+                  {{ t('hero.btn_add') }}
                 </a>
               </Button>
               <Button size="lg" variant="outline" class="h-12 px-8 text-base transition-transform hover:scale-105 active:scale-95 bg-background/50 backdrop-blur-sm" as-child>
-                <a href="#features">See highlights</a>
+                <a href="#features">{{ t('hero.btn_highlights') }}</a>
               </Button>
             </div>
             
             <div class="flex items-center gap-2 text-sm text-muted-foreground animate-fade-in-up opacity-0 animation-delay-500">
                <Shield class="h-4 w-4 text-green-500" />
-               <span>Local-only privacy. No data leaves your device.</span>
+               <span>{{ t('hero.privacy_note') }}</span>
             </div>
           </div>
 
@@ -166,15 +170,15 @@ const steps = [
     <section id="features" class="container mx-auto px-4 py-16 md:py-24 lg:py-32">
       <div class="mx-auto max-w-3xl text-center space-y-4 mb-16">
         <div class="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground">
-          <span>Fast</span>
+          <span>{{ t('features.tag_fast') }}</span>
           <span class="text-foreground/50">•</span>
-          <span>Keyboard-first</span>
+          <span>{{ t('features.tag_keyboard') }}</span>
           <span class="text-foreground/50">•</span>
-          <span>Privacy-focused</span>
+          <span>{{ t('features.tag_privacy') }}</span>
         </div>
-        <h2 class="text-balance font-heading text-3xl font-bold sm:text-4xl md:text-5xl">Features & Preview</h2>
+        <h2 class="text-balance font-heading text-3xl font-bold sm:text-4xl md:text-5xl">{{ t('features.title') }}</h2>
         <p class="text-pretty text-muted-foreground sm:text-lg">
-          Designed around one flow: invoke, search, open.
+          {{ t('features.subtitle') }}
         </p>
       </div>
 
@@ -246,25 +250,25 @@ const steps = [
       <div class="container mx-auto px-4 py-16 md:py-24">
         <div class="mx-auto max-w-3xl text-center space-y-8">
           <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            Ready to speed up your workflow?
+            {{ t('cta.title') }}
           </h2>
           <p class="text-lg text-muted-foreground">
-            Join users who have stopped digging through tabs and started finding them instantly.
+            {{ t('cta.desc') }}
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button size="lg" class="h-14 px-8 text-lg w-full sm:w-auto shadow-xl shadow-blue-500/20" as-child>
               <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank" rel="noreferrer">
-                Add to Chrome for Free
+                {{ t('cta.btn_add') }}
               </a>
             </Button>
             <Button size="lg" variant="outline" class="h-14 px-8 text-lg w-full sm:w-auto" as-child>
-              <a href="https://github.com/Konata9/MiaoMint" target="_blank" rel="noreferrer">
-                View on GitHub
+              <a href="https://github.com/Konata9/MiaoMint-site" target="_blank" rel="noreferrer">
+                {{ t('cta.btn_github') }}
               </a>
             </Button>
           </div>
           <p class="text-sm text-muted-foreground">
-            Open Source • Local Data • No Tracking
+            {{ t('cta.footer') }}
           </p>
         </div>
       </div>
