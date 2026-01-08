@@ -2,6 +2,19 @@
   <img src="public/logo.png" alt="MiaoMint Logo" width="120" />
   <h1>MiaoMint Site</h1>
   <p><strong>Official Website for MiaoMint Extension</strong></p>
+
+  <p>
+    <a href="./README.zh-CN.md">中文版</a>
+  </p>
+
+  <p>
+    <a href="https://miaomint.konata9.cc">
+        <img src="https://img.shields.io/badge/Website-miaomint.konata9.cc-blue?style=flat-square&logo=google-chrome&logoColor=white" alt="Website">
+    </a>
+    <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en">
+        <img src="https://img.shields.io/badge/Chrome_Web_Store-Install-4285F4?style=flat-square&logo=google-chrome&logoColor=white" alt="Chrome Web Store">
+    </a>
+  </p>
 </div>
 
 ---
