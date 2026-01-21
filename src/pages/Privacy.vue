@@ -48,7 +48,20 @@ useTitle(() => t('meta.privacy_title'))
           Your preferences (theme, opacity, etc.) are stored using <code>chrome.storage.sync</code>. If you have Chrome Sync enabled, these settings may be synchronized across your signed-in Chrome devices by Google as part of the browser's sync feature. You can control this behavior in your browser sync settings.
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.6 Keyboard Interactions</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">2.6 Session Data (Smart Sessions)</h3>
+        <p class="mb-4">
+          When you use the "Smart Sessions" feature to save a workspace, we store the layout of your windows and the URLs/titles of your tabs locally on your device using <code>chrome.storage.local</code>. This data allows you to restore your window layout and tabs later. It is stored <strong>only on your device</strong> and is never uploaded to our servers or any third-party cloud storage. You can delete any saved session at any time within the extension.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">2.7 Payment & Licensing Data</h3>
+        <p class="mb-4">
+          MiaoMint offers a Pro version via a one-time license purchase. Payments are securely processed by our Merchant of Record, <strong>Lemon Squeezy</strong>. MiaoMint does <strong>not</strong> collect, see, or store your credit card details or billing address.
+        </p>
+        <p class="mb-4">
+          When you activate a license key, the extension communicates directly with the Lemon Squeezy API to verify the key's validity. We locally store only your <strong>License Key</strong> and its <strong>Activation Status</strong> (e.g., "active" or "expired") to unlock Pro features.
+        </p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">2.8 Keyboard Interactions</h3>
         <p class="mb-4">
           MiaoMint uses keyboard events to support the command shortcut and in-UI navigation (e.g. Escape, Arrow keys, Enter). These events are not recorded, stored, or sent to us.
         </p>
