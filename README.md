@@ -19,17 +19,6 @@
 
 ---
 
-## ⚠️ Important Note
-
-**This repository contains the source code for the MiaoMint website.**
-
-It is **NOT** the source code for the MiaoMint extension itself. The extension is closed-source.
-This repository is used for:
-1.  Hosting the website code.
-2.  **Issue Tracking**: Collecting bug reports and feature requests for the MiaoMint extension.
-
----
-
 ## ✨ About MiaoMint Extension
 
 MiaoMint is a Spotlight-style Chrome command palette extension that provides a unified entry point to quickly search and jump to tabs, bookmarks, and browsing history, with support for direct URL navigation and web search.
