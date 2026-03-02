@@ -11,82 +11,78 @@ useTitle(() => t('meta.privacy_title'))
   <Layout>
     <div class="container mx-auto py-10 px-4 max-w-3xl">
       <div class="prose dark:prose-invert">
-        <h1 class="text-4xl font-bold mb-8">Privacy Policy</h1>
-        <p class="mb-4"><strong>Effective Date:</strong> 2025-12-22</p>
+        <h1 class="text-4xl font-bold mb-8">{{ t('privacy.title') }}</h1>
+        <p class="mb-4"><strong>{{ t('privacy.effective_date', { date: '2025-12-22' }) }}</strong></p>
         
-        <h2 class="text-2xl font-semibold mt-8 mb-4">1. Introduction</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">{{ t('privacy.intro_title') }}</h2>
         <p class="mb-4">
-          MiaoMint ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how our Chrome Extension ("MiaoMint") handles your data.
+          {{ t('privacy.intro_text') }}
         </p>
         <p class="mb-4 font-medium">
-          Core Principle: We believe your browsing data belongs to you. MiaoMint is designed to operate locally on your device. We do not collect, store, or transmit your personal data to any external servers.
+          {{ t('privacy.core_principle') }}
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4">2. Data We Handle</h2>
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.1 Tab Information</h3>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">{{ t('privacy.data_handle_title') }}</h2>
+        <h3 class="text-xl font-semibold mt-4 mb-2">{{ t('privacy.tab_info_title') }}</h3>
         <p class="mb-4">
-          MiaoMint accesses your open tabs' titles and URLs solely to provide the search and navigation functionality. This processing happens entirely within your browser's memory.
+          {{ t('privacy.tab_info_text') }}
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.2 Bookmark Information</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">{{ t('privacy.bookmark_info_title') }}</h3>
         <p class="mb-4">
-          When you use bookmark search (e.g. bookmark mode), MiaoMint reads your browser bookmarks' titles and URLs to provide local search and open-bookmark functionality. Bookmark data is processed locally in your browser and is not transmitted to us.
+          {{ t('privacy.bookmark_info_text') }}
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.3 History Information</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">{{ t('privacy.history_info_title') }}</h3>
         <p class="mb-4">
-          When you use history search (e.g. history mode), MiaoMint searches your browsing history to provide local search and open-history functionality. History data is processed locally in your browser and is not transmitted to us.
+          {{ t('privacy.history_info_text') }}
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.4 Search Queries</h3>
+        <h3 class="text-xl font-semibold mt-4 mb-2">{{ t('privacy.search_queries_title') }}</h3>
+        <p class="mb-4" v-html="t('privacy.search_queries_text')"></p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">{{ t('privacy.user_settings_title') }}</h3>
+        <p class="mb-4" v-html="t('privacy.user_settings_text')"></p>
+
+        <h3 class="text-xl font-semibold mt-4 mb-2">{{ t('privacy.keyboard_interactions_title') }}</h3>
         <p class="mb-4">
-          If you choose to run a web search from MiaoMint, your query is passed to your browser's built-in search feature (e.g. <code>chrome.search.query</code>) and will be handled by your default search engine according to its own privacy policy. We do not receive or store your search queries.
+          {{ t('privacy.keyboard_interactions_text') }}
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.5 User Settings</h3>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">{{ t('privacy.data_protection_title') }}</h2>
+        <h3 class="text-xl font-semibold mt-4 mb-2">{{ t('privacy.no_remote_collection_title') }}</h3>
         <p class="mb-4">
-          Your preferences (theme, opacity, etc.) are stored using <code>chrome.storage.sync</code>. If you have Chrome Sync enabled, these settings may be synchronized across your signed-in Chrome devices by Google as part of the browser's sync feature. You can control this behavior in your browser sync settings.
+          {{ t('privacy.no_remote_collection_text') }}
         </p>
 
-        <h3 class="text-xl font-semibold mt-4 mb-2">2.6 Keyboard Interactions</h3>
-        <p class="mb-4">
-          MiaoMint uses keyboard events to support the command shortcut and in-UI navigation (e.g. Escape, Arrow keys, Enter). These events are not recorded, stored, or sent to us.
-        </p>
-
-        <h2 class="text-2xl font-semibold mt-8 mb-4">3. Data Protection</h2>
-        <h3 class="text-xl font-semibold mt-4 mb-2">3.1 No Remote Collection</h3>
-        <p class="mb-4">
-          We do not have any backend servers. We do not use Google Analytics or any third-party tracking scripts within the extension. Your tab and bookmark data is processed locally in your browser and is not transmitted to us.
-        </p>
-
-        <h2 class="text-2xl font-semibold mt-8 mb-4">4. Permissions Explained</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">{{ t('privacy.permissions_title') }}</h2>
         <ul class="list-disc pl-6 mb-4 space-y-2">
-          <li><strong>Read and change all your data on the websites you visit (`&lt;all_urls&gt;`)</strong>: This permission is technically required to inject the MiaoMint search bar (Spotlight-like UI) into every page you visit so you can invoke it with a shortcut. We do not read page content other than to display the search bar.</li>
-          <li><strong>Tabs</strong>: Required to list your currently open tabs (title, URL) so you can search and switch between them.</li>
-          <li><strong>Bookmarks</strong>: Required to list your browser bookmarks (title, URL) so you can search and open them.</li>
-          <li><strong>History</strong>: Required to search your browser history (title, URL) so you can find and open visited pages.</li>
-          <li><strong>Storage</strong>: Required to save your preferences (theme, opacity, language).</li>
-          <li><strong>Search</strong>: Required to trigger a web search using your browser's default search engine when you choose to do so.</li>
-          <li><strong>Active Tab</strong>: Required to interact with the currently active tab when you invoke the extension (e.g. showing the UI and opening a selected result).</li>
+          <li v-html="t('privacy.permissions.all_urls')"></li>
+          <li v-html="t('privacy.permissions.tabs')"></li>
+          <li v-html="t('privacy.permissions.bookmarks')"></li>
+          <li v-html="t('privacy.permissions.history')"></li>
+          <li v-html="t('privacy.permissions.storage')"></li>
+          <li v-html="t('privacy.permissions.search')"></li>
+          <li v-html="t('privacy.permissions.active_tab')"></li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4">5. Your Rights</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">{{ t('privacy.your_rights_title') }}</h2>
         <p class="mb-4">
-          Since we do not collect your data, there is no data for us to delete or export upon request. You have full control over the local data stored by the extension:
+          {{ t('privacy.your_rights_text') }}
         </p>
         <ul class="list-disc pl-6 mb-4">
-          <li>You can uninstall the extension to immediately remove all associated local data.</li>
-          <li>If you have Chrome Sync enabled, you can disable sync or clear synced data via your browser sync settings.</li>
+          <li>{{ t('privacy.your_rights_list.item1') }}</li>
+          <li>{{ t('privacy.your_rights_list.item2') }}</li>
         </ul>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4">6. Changes to This Policy</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">{{ t('privacy.changes_title') }}</h2>
         <p class="mb-4">
-          We may update this privacy policy from time to time. If we make significant changes, we will notify you by updating the date at the top of this policy and, where appropriate, through the extension.
+          {{ t('privacy.changes_text') }}
         </p>
 
-        <h2 class="text-2xl font-semibold mt-8 mb-4">7. Contact</h2>
+        <h2 class="text-2xl font-semibold mt-8 mb-4">{{ t('privacy.contact_title') }}</h2>
         <p class="mb-4">
-          If you have questions about this policy, please contact us via the Chrome Web Store support tab.
+          {{ t('privacy.contact_text') }}
         </p>
       </div>
     </div>

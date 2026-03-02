@@ -86,6 +86,7 @@
   "layout": {
     "home": "Home",
     "privacy": "Privacy",
+    "blog": "Blog",
     "language": "Switch Language",
     "add_to_chrome": "Add to Chrome",
     "built_by": "Built by Konata9."
@@ -93,5 +94,48 @@
   "meta": {
     "title": "MiaoMint — Command Palette for Chrome Tabs, Bookmarks & History",
     "privacy_title": "Privacy Policy - MiaoMint"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "effective_date": "Effective Date: {date}",
+    "intro_title": "1. Introduction",
+    "intro_text": "MiaoMint (\"we,\" \"our,\" or \"us\") is committed to protecting your privacy. This Privacy Policy explains how our Chrome Extension (\"MiaoMint\") handles your data.",
+    "core_principle": "Core Principle: We believe your browsing data belongs to you. MiaoMint is designed to operate locally on your device. We do not collect, store, or transmit your personal data to any external servers.",
+    "data_handle_title": "2. Data We Handle",
+    "tab_info_title": "2.1 Tab Information",
+    "tab_info_text": "MiaoMint accesses your open tabs' titles and URLs solely to provide the search and navigation functionality. This processing happens entirely within your browser's memory.",
+    "bookmark_info_title": "2.2 Bookmark Information",
+    "bookmark_info_text": "When you use bookmark search (e.g. bookmark mode), MiaoMint reads your browser bookmarks' titles and URLs to provide local search and open-bookmark functionality. Bookmark data is processed locally in your browser and is not transmitted to us.",
+    "history_info_title": "2.3 History Information",
+    "history_info_text": "When you use history search (e.g. history mode), MiaoMint searches your browsing history to provide local search and open-history functionality. History data is processed locally in your browser and is not transmitted to us.",
+    "search_queries_title": "2.4 Search Queries",
+    "search_queries_text": "If you choose to run a web search from MiaoMint, your query is passed to your browser's built-in search feature (e.g. `chrome.search.query`) and will be handled by your default search engine according to its own privacy policy. We do not receive or store your search queries.",
+    "user_settings_title": "2.5 User Settings",
+    "user_settings_text": "Your preferences (theme, opacity, etc.) are stored using `chrome.storage.sync`. If you have Chrome Sync enabled, these settings may be synchronized across your signed-in Chrome devices by Google as part of the browser's sync feature. You can control this behavior in your browser sync settings.",
+    "keyboard_interactions_title": "2.6 Keyboard Interactions",
+    "keyboard_interactions_text": "MiaoMint uses keyboard events to support the command shortcut and in-UI navigation (e.g. Escape, Arrow keys, Enter). These events are not recorded, stored, or sent to us.",
+    "data_protection_title": "3. Data Protection",
+    "no_remote_collection_title": "3.1 No Remote Collection",
+    "no_remote_collection_text": "We do not have any backend servers. We do not use Google Analytics or any third-party tracking scripts within the extension. Your tab and bookmark data is processed locally in your browser and is not transmitted to us.",
+    "permissions_title": "4. Permissions Explained",
+    "permissions": {
+      "all_urls": "<strong>Read and change all your data on the websites you visit (`<all_urls>`)</strong>: This permission is technically required to inject the MiaoMint search bar (Spotlight-like UI) into every page you visit so you can invoke it with a shortcut. We do not read page content other than to display the search bar.",
+      "tabs": "<strong>Tabs</strong>: Required to list your currently open tabs (title, URL) so you can search and switch between them.",
+      "bookmarks": "<strong>Bookmarks</strong>: Required to list your browser bookmarks (title, URL) so you can search and open them.",
+      "history": "<strong>History</strong>: Required to search your browser history (title, URL) so you can find and open visited pages.",
+      "storage": "<strong>Storage</strong>: Required to save your preferences (theme, opacity, language).",
+      "search": "<strong>Search</strong>: Required to trigger a web search using your browser's default search engine when you choose to do so.",
+      "active_tab": "<strong>Active Tab</strong>: Required to interact with the currently active tab when you invoke the extension (e.g. showing the UI and opening a selected result)."
+    },
+    "your_rights_title": "5. Your Rights",
+    "your_rights_text": "Since we do not collect your data, there is no data for us to delete or export upon request. You have full control over the local data stored by the extension:",
+    "your_rights_list": {
+        "item1": "You can uninstall the extension to immediately remove all associated local data.",
+        "item2": "If you have Chrome Sync enabled, you can disable sync or clear synced data via your browser sync settings."
+    },
+    "changes_title": "6. Changes to This Policy",
+    "changes_text": "We may update this privacy policy from time to time. If we make significant changes, we will notify you by updating the date at the top of this policy and, where appropriate, through the extension.",
+    "contact_title": "7. Contact",
+    "contact_text": "If you have questions about this policy, please contact us via the Chrome Web Store support tab."
   }
 }

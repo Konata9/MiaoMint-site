@@ -41,6 +41,7 @@ const setLocale = (lang: string) => {
           </nav>
         </div>
         <div class="flex flex-1 items-center justify-end space-x-2">
+          <a class="transition-colors hover:text-foreground/80 text-foreground/60 text-sm font-medium mr-2" href="https://konata9.cc/" target="_blank" rel="noreferrer">{{ t('layout.blog') }}</a>
           <div class="relative" ref="languageMenuRef">
             <Button variant="ghost" size="icon" @click="showLanguageMenu = !showLanguageMenu" :title="t('layout.language')">
               <Languages class="h-5 w-5" />
