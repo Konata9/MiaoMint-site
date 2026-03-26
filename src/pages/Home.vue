@@ -8,7 +8,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { 
   Search, Shield, Bookmark, Palette, LayoutGrid, X, 
   Keyboard, Command, ArrowUp, ArrowDown, CornerDownLeft, 
-  FileCode, Users, Gift, Star, Zap, Code
+  FileCode, Users, Gift, Star, Zap
 } from 'lucide-vue-next'
 
 const { t } = useI18n()
@@ -109,12 +109,6 @@ const techStack = computed(() => [
             <Button size="lg" class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 h-14 text-lg rounded-full" as-child>
                 <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank">
                   {{ t('hero.btn_add') }}
-                </a>
-            </Button>
-            <Button size="lg" variant="outline" class="border-gray-700 hover:border-cyan-400 text-gray-300 hover:text-cyan-400 px-8 h-14 text-lg rounded-full bg-transparent" as-child>
-                <a href="https://github.com/Konata9/MiaoMint" target="_blank">
-                   <Code class="w-5 h-5 mr-2" />
-                   {{ t('hero.btn_github') }}
                 </a>
             </Button>
         </div>
@@ -270,7 +264,7 @@ const techStack = computed(() => [
             <h2 class="text-3xl font-bold text-center mb-4">{{ t('shortcuts.title') }}</h2>
             <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">{{ t('shortcuts.subtitle') }}</p>
 
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-8">
+            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
                 <!-- Core -->
                 <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
@@ -280,7 +274,7 @@ const techStack = computed(() => [
                     <div class="space-y-4">
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.open_close') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-cyan-300">Opt/Alt + M</kbd>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-cyan-300">Alt/Opt + M</kbd>
                          </div>
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.navigate') }}</span>
@@ -324,6 +318,20 @@ const techStack = computed(() => [
                              <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">h</kbd>
                            </div>
                          </div>
+                         <div class="flex items-center justify-between">
+                           <span class="text-gray-300">{{ t('shortcuts.frequent_search') }}</span>
+                           <div class="flex items-center gap-1">
+                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">/</kbd>
+                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">freq</kbd>
+                           </div>
+                         </div>
+                         <div class="flex items-center justify-between">
+                           <span class="text-gray-300">{{ t('shortcuts.duplicate_search') }}</span>
+                           <div class="flex items-center gap-1">
+                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">/</kbd>
+                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">dup</kbd>
+                           </div>
+                         </div>
                           <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.open_settings') }}</span>
                            <div class="flex items-center gap-1">
@@ -333,57 +341,82 @@ const techStack = computed(() => [
                          </div>
                     </div>
                 </div>
+                 <!-- Tab Management -->
+                <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
+                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                        <Command class="w-5 h-5 text-green-400" />
+                        {{ t('shortcuts.tab_management') }}
+                    </h3>
+                    <div class="space-y-4">
+                         <div class="flex items-center justify-between">
+                           <span class="text-gray-300">{{ t('shortcuts.close_tab') }}</span>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Cmd/Ctrl + W</kbd>
+                         </div>
+                         <div class="flex items-center justify-between">
+                           <span class="text-gray-300">{{ t('shortcuts.close_tab') }}</span>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Delete</kbd>
+                         </div>
+                         <div class="flex items-center justify-between">
+                           <span class="text-gray-300">{{ t('shortcuts.toggle_duplicate') }}</span>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Cmd/Ctrl + Shift + D</kbd>
+                         </div>
+                         <div class="flex items-center justify-between">
+                           <span class="text-gray-300">{{ t('shortcuts.close_all_duplicates') }}</span>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Cmd/Ctrl + D</kbd>
+                         </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. Open Source Section -->
+    <!-- 5. Features Detail Section -->
     <section class="py-20 bg-white dark:bg-gray-950">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
                      <div class="inline-flex items-center gap-3 mb-4">
-                       <FileCode class="w-10 h-10 text-green-500" />
-                       <h2 class="text-3xl font-bold">{{ t('opensource.title') }}</h2>
+                       <Zap class="w-10 h-10 text-purple-500" />
+                       <h2 class="text-3xl font-bold">{{ t('features_detail.title') }}</h2>
                      </div>
-                     <p class="text-gray-600 dark:text-gray-400 text-lg">{{ t('opensource.subtitle') }}</p>
+                     <p class="text-gray-600 dark:text-gray-400 text-lg">{{ t('features_detail.subtitle') }}</p>
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                      <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <FileCode class="w-6 h-6 text-green-600 dark:text-green-400" />
+                       <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                         <Zap class="w-6 h-6 text-purple-600 dark:text-purple-400" />
                        </div>
                        <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('opensource.mit_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('opensource.mit_desc') }}</p>
+                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.smart_title') }}</h3>
+                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.smart_desc') }}</p>
                        </div>
                      </div>
                      <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <Code class="w-6 h-6 text-blue-600 dark:text-blue-400" />
+                       <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                         <LayoutGrid class="w-6 h-6 text-red-600 dark:text-red-400" />
                        </div>
                        <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('opensource.transparent_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('opensource.transparent_desc') }}</p>
+                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.duplicate_title') }}</h3>
+                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.duplicate_desc') }}</p>
                        </div>
                      </div>
                       <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <Users class="w-6 h-6 text-purple-600 dark:text-purple-400" />
+                       <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                         <Palette class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
                        </div>
                        <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('opensource.community_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('opensource.community_desc') }}</p>
+                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.customizable_title') }}</h3>
+                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.customizable_desc') }}</p>
                        </div>
                      </div>
                       <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <Gift class="w-6 h-6 text-amber-600 dark:text-amber-400" />
+                       <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0">
+                         <Shield class="w-6 h-6 text-green-600 dark:text-green-400" />
                        </div>
                        <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('opensource.free_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('opensource.free_desc') }}</p>
+                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.secure_title') }}</h3>
+                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.secure_desc') }}</p>
                        </div>
                      </div>
                 </div>
@@ -391,19 +424,13 @@ const techStack = computed(() => [
                 <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-8">
                      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                        <div>
-                         <h3 class="text-2xl font-bold mb-2">{{ t('opensource.join_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('opensource.join_desc') }}</p>
+                         <h3 class="text-2xl font-bold mb-2">{{ t('features_detail.feedback_title') }}</h3>
+                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.feedback_desc') }}</p>
                        </div>
                        <div class="flex gap-4">
-                         <Button as-child class="bg-gray-900 text-white hover:bg-black">
-                            <a href="https://github.com/Konata9/MiaoMint" target="_blank">
-                                <Star class="w-4 h-4 mr-2" />
-                                {{ t('opensource.btn_star') }}
-                            </a>
-                         </Button>
-                         <Button variant="outline" as-child>
-                            <a href="https://github.com/Konata9/MiaoMint/issues" target="_blank">
-                                {{ t('opensource.btn_issue') }}
+                         <Button as-child class="bg-purple-600 text-white hover:bg-purple-700">
+                            <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank">
+                                {{ t('cta.btn_feedback') }}
                             </a>
                          </Button>
                        </div>
@@ -446,8 +473,8 @@ const techStack = computed(() => [
               </a>
             </Button>
             <Button size="lg" variant="outline" class="h-14 px-8 text-lg w-full sm:w-auto" as-child>
-              <a href="https://github.com/Konata9/MiaoMint-site" target="_blank" rel="noreferrer">
-                {{ t('cta.btn_github') }}
+              <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en&tab=reviews" target="_blank" rel="noreferrer">
+                {{ t('cta.btn_feedback') }}
               </a>
             </Button>
           </div>

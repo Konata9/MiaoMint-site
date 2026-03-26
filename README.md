@@ -25,7 +25,7 @@ MiaoMint is a Spotlight-style Chrome command palette extension that provides a u
 
 ### Core Features
 
-- **Global Activation**: Press `Opt/Alt + M` on any webpage to open/close. Supports auto-focus and focus protection.
+- **Global Activation**: Press `Alt/Opt + M` on any webpage to open/close. Supports auto-focus and focus protection.
 - **Instant Startup**: Injected immediately at page load (document_start), no need to wait for the page to render fully.
 - **Keyboard First**: Navigate with `↑/↓`, open with `Enter`, close with `Esc`, and lock focus with `Tab`.
 - **Hybrid Search**: Smartly merges open tabs and history; automatically deduplicates and prioritizes tabs.
