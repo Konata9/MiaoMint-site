@@ -131,7 +131,6 @@
 
   --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
   --animate-fade-in: fade-in 0.5s ease-out forwards;
-  --animate-pulse-soft: pulse-soft 3s infinite ease-in-out;
   
   @keyframes fade-in-up {
     from {
@@ -147,11 +146,6 @@
   @keyframes fade-in {
     from { opacity: 0; }
     to { opacity: 1; }
-  }
-
-  @keyframes pulse-soft {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
   }
 }
 

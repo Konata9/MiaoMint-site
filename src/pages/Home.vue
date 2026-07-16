@@ -29,35 +29,35 @@ const features = computed(() => [
     icon: Search,
     title: t('features.unified_title'),
     description: t('features.unified_desc'),
-    accentClass: 'text-cyan-600 bg-cyan-50 dark:bg-cyan-950/40 dark:text-cyan-300',
+    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
     image: '/images/search-tab.png'
   },
   {
     icon: LayoutGrid,
     title: t('features.keyboard_title'),
     description: t('features.keyboard_desc'),
-    accentClass: 'text-blue-600 bg-blue-50 dark:bg-blue-950/40 dark:text-blue-300',
+    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
     image: '/images/list-tab.png'
   },
   {
     icon: Bookmark,
     title: t('features.command_title'),
     description: t('features.command_desc'),
-    accentClass: 'text-indigo-600 bg-indigo-50 dark:bg-indigo-950/40 dark:text-indigo-300',
+    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
     image: '/images/list-bookmark.png'
   },
   {
     icon: Palette,
     title: t('features.polished_title'),
     description: t('features.polished_desc'),
-    accentClass: 'text-fuchsia-600 bg-fuchsia-50 dark:bg-fuchsia-950/40 dark:text-fuchsia-300',
+    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
     image: '/images/setting-page.png'
   },
   {
     icon: Shield,
     title: t('features.privacy_title'),
     description: t('features.privacy_desc'),
-    accentClass: 'text-sky-600 bg-sky-50 dark:bg-sky-950/40 dark:text-sky-300',
+    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
     image: '/images/list-history.png'
   },
 ])
@@ -66,7 +66,7 @@ const features = computed(() => [
 const techStack = computed(() => [
     { name: 'Vue 3', desc: t('techstack.vue'), icon: 'V', color: 'text-green-500' },
     { name: 'TypeScript', desc: t('techstack.ts'), icon: 'TS', color: 'text-blue-500' },
-    { name: 'Vite', desc: t('techstack.vite'), icon: '⚡', color: 'text-purple-500' },
+    { name: 'Vite', desc: t('techstack.vite'), icon: 'V', color: 'text-primary' },
     { name: 'Tailwind', desc: t('techstack.tailwind'), icon: 'TW', color: 'text-cyan-500' },
     { name: 'Extension API', desc: t('techstack.crx'), icon: 'CRX', color: 'text-orange-500' },
 ])
@@ -75,12 +75,7 @@ const techStack = computed(() => [
 <template>
   <Layout>
     <!-- 1. Hero Section -->
-    <section class="relative overflow-hidden pt-10 pb-20 bg-gradient-to-b from-gray-900 to-gray-950 text-white">
-       <!-- Background effects -->
-       <div class="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-        <div class="absolute -top-[20%] -left-[10%] h-[1000px] w-[1000px] rounded-full bg-cyan-500/10 blur-[100px] opacity-30" />
-        <div class="absolute top-[10%] right-[0%] h-[800px] w-[800px] rounded-full bg-blue-600/10 blur-[100px] opacity-30" />
-      </div>
+    <section class="relative overflow-hidden pt-10 pb-20 bg-gray-950 text-white">
 
       <div class="container mx-auto px-4 py-10 md:py-20 text-center">
         <!-- Logo & Title -->
@@ -106,7 +101,7 @@ const techStack = computed(() => [
 
         <!-- Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up animation-delay-300">
-            <Button size="lg" class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 h-14 text-lg rounded-full" as-child>
+            <Button size="lg" class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 h-14 text-lg" as-child>
                 <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank">
                   {{ t('hero.btn_add') }}
                 </a>
@@ -114,11 +109,11 @@ const techStack = computed(() => [
         </div>
 
         <!-- Video Preview (Centered) -->
-        <div class="relative max-w-4xl mx-auto rounded-xl overflow-hidden shadow-2xl border border-white/10 animate-fade-in-up animation-delay-500">
+        <div class="relative max-w-4xl mx-auto rounded-xl overflow-hidden border border-white/10 animate-fade-in-up animation-delay-500">
             <div class="absolute top-0 left-0 right-0 h-8 bg-gray-900/90 backdrop-blur flex items-center px-4 gap-1.5 z-10 border-b border-white/5">
-                <div class="w-3 h-3 rounded-full bg-red-500/20"></div>
-                <div class="w-3 h-3 rounded-full bg-amber-500/20"></div>
-                <div class="w-3 h-3 rounded-full bg-green-500/20"></div>
+                <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
+                <div class="w-3 h-3 rounded-full bg-amber-400/80"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
             </div>
             <video
                 class="w-full aspect-video object-cover bg-gray-900"
@@ -139,40 +134,34 @@ const techStack = computed(() => [
         <h2 class="text-3xl font-bold text-center mb-12">{{ t('core_features.title') }}</h2>
         <div class="grid md:grid-cols-3 gap-8">
             <!-- Card 1 -->
-            <Card class="border-none shadow-lg hover:shadow-xl transition-shadow dark:bg-gray-800">
+            <Card class="border-none shadow-sm transition-shadow dark:bg-gray-800">
                 <CardContent class="p-8">
-                    <div class="w-14 h-14 bg-cyan-100 dark:bg-cyan-900/50 rounded-lg flex items-center justify-center mb-6">
-                        <Search class="w-7 h-7 text-cyan-600 dark:text-cyan-400" />
-                    </div>
+                    <Search class="w-7 h-7 text-primary mb-6" />
                     <h3 class="text-xl font-bold mb-3">{{ t('core_features.hybrid_title') }}</h3>
                     <p class="text-muted-foreground mb-4">{{ t('core_features.hybrid_desc') }}</p>
-                    <div class="text-sm text-cyan-600 dark:text-cyan-400 font-mono bg-cyan-50 dark:bg-cyan-900/20 p-2 rounded">
+                    <div class="text-sm text-muted-foreground bg-muted p-2 rounded">
                         {{ t('core_features.hybrid_meta') }}
                     </div>
                 </CardContent>
             </Card>
              <!-- Card 2 -->
-            <Card class="border-none shadow-lg hover:shadow-xl transition-shadow dark:bg-gray-800">
+            <Card class="border-none shadow-sm transition-shadow dark:bg-gray-800">
                 <CardContent class="p-8">
-                    <div class="w-14 h-14 bg-orange-100 dark:bg-orange-900/50 rounded-lg flex items-center justify-center mb-6">
-                        <Keyboard class="w-7 h-7 text-orange-600 dark:text-orange-400" />
-                    </div>
+                    <Keyboard class="w-7 h-7 text-primary mb-6" />
                     <h3 class="text-xl font-bold mb-3">{{ t('core_features.keyboard_title') }}</h3>
                     <p class="text-muted-foreground mb-4">{{ t('core_features.keyboard_desc') }}</p>
-                    <div class="text-sm text-orange-600 dark:text-orange-400 font-mono bg-orange-50 dark:bg-orange-900/20 p-2 rounded">
+                    <div class="text-sm text-muted-foreground bg-muted p-2 rounded">
                         {{ t('core_features.keyboard_meta') }}
                     </div>
                 </CardContent>
             </Card>
              <!-- Card 3 -->
-            <Card class="border-none shadow-lg hover:shadow-xl transition-shadow dark:bg-gray-800">
+            <Card class="border-none shadow-sm transition-shadow dark:bg-gray-800">
                 <CardContent class="p-8">
-                    <div class="w-14 h-14 bg-green-100 dark:bg-green-900/50 rounded-lg flex items-center justify-center mb-6">
-                        <Shield class="w-7 h-7 text-green-600 dark:text-green-400" />
-                    </div>
+                    <Shield class="w-7 h-7 text-primary mb-6" />
                     <h3 class="text-xl font-bold mb-3">{{ t('core_features.privacy_title') }}</h3>
                     <p class="text-muted-foreground mb-4">{{ t('core_features.privacy_desc') }}</p>
-                    <div class="text-sm text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 p-2 rounded">
+                    <div class="text-sm text-muted-foreground bg-muted p-2 rounded">
                         {{ t('core_features.privacy_meta') }}
                     </div>
                 </CardContent>
@@ -202,7 +191,7 @@ const techStack = computed(() => [
           <div 
             v-for="(feature, index) in features" 
             :key="feature.title"
-            class="group p-4 rounded-xl cursor-pointer transition-all duration-300 border border-transparent"
+            class="group p-4 rounded-xl cursor-pointer transition-colors duration-150 border border-transparent"
             :class="activeFeatureIndex === index ? 'bg-muted/50 border-border shadow-sm' : 'hover:bg-muted/30'"
             @mouseenter="activeFeatureIndex = index"
           >
@@ -218,7 +207,7 @@ const techStack = computed(() => [
                   {{ feature.title }}
                 </h3>
                 <p 
-                  class="text-sm text-muted-foreground transition-all duration-300 overflow-hidden"
+                  class="text-sm text-muted-foreground transition duration-150 overflow-hidden"
                   :class="activeFeatureIndex === index ? 'max-h-20 opacity-100 mt-1' : 'max-h-0 opacity-0'"
                 >
                   {{ feature.description }}
@@ -229,7 +218,7 @@ const techStack = computed(() => [
         </div>
          <!-- Right: Preview -->
          <div class="lg:col-span-7">
-          <div class="relative aspect-[16/10] w-full overflow-hidden rounded-xl border bg-zinc-950 shadow-2xl ring-1 ring-white/10">
+          <div class="relative aspect-[16/10] w-full overflow-hidden rounded-xl border bg-zinc-950 shadow-sm ring-1 ring-white/10">
              <!-- Traffic Lights -->
              <div class="absolute top-0 left-0 right-0 h-8 bg-muted/80 backdrop-blur flex items-center px-4 gap-1.5 z-20 border-b">
                 <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
@@ -268,13 +257,13 @@ const techStack = computed(() => [
                 <!-- Core -->
                 <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                        <Zap class="w-5 h-5 text-cyan-400" />
+                        <Zap class="w-5 h-5 text-primary" />
                         {{ t('shortcuts.core_title') }}
                     </h3>
                     <div class="space-y-4">
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.open_close') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-cyan-300">Alt/Opt + M</kbd>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono ">Alt/Opt + M</kbd>
                          </div>
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.navigate') }}</span>
@@ -296,13 +285,13 @@ const techStack = computed(() => [
                  <!-- Advanced -->
                 <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                        <Command class="w-5 h-5 text-orange-400" />
+                        <Command class="w-5 h-5 text-primary" />
                         {{ t('shortcuts.advanced_title') }}
                     </h3>
                     <div class="space-y-4">
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.force_web') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-orange-300">Cmd/Ctrl + Enter</kbd>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono ">Cmd/Ctrl + Enter</kbd>
                          </div>
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.bookmark_search') }}</span>
@@ -344,25 +333,25 @@ const techStack = computed(() => [
                  <!-- Tab Management -->
                 <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
                     <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                        <Command class="w-5 h-5 text-green-400" />
+                        <Command class="w-5 h-5 text-primary" />
                         {{ t('shortcuts.tab_management') }}
                     </h3>
                     <div class="space-y-4">
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.close_tab') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Cmd/Ctrl + W</kbd>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Cmd/Ctrl + W</kbd>
                          </div>
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.close_tab') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Delete</kbd>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Delete</kbd>
                          </div>
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.toggle_duplicate') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Cmd/Ctrl + Shift + D</kbd>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Cmd/Ctrl + Shift + D</kbd>
                          </div>
                          <div class="flex items-center justify-between">
                            <span class="text-gray-300">{{ t('shortcuts.close_all_duplicates') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono text-green-300">Cmd/Ctrl + D</kbd>
+                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Cmd/Ctrl + D</kbd>
                          </div>
                     </div>
                 </div>
@@ -376,7 +365,7 @@ const techStack = computed(() => [
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-12">
                      <div class="inline-flex items-center gap-3 mb-4">
-                       <Zap class="w-10 h-10 text-purple-500" />
+                       <Zap class="w-10 h-10 text-primary" />
                        <h2 class="text-3xl font-bold">{{ t('features_detail.title') }}</h2>
                      </div>
                      <p class="text-gray-600 dark:text-gray-400 text-lg">{{ t('features_detail.subtitle') }}</p>
@@ -384,36 +373,28 @@ const techStack = computed(() => [
 
                 <div class="grid md:grid-cols-2 gap-8 mb-12">
                      <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <Zap class="w-6 h-6 text-purple-600 dark:text-purple-400" />
-                       </div>
+                       <Zap class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                        <div>
                          <h3 class="text-xl font-bold mb-2">{{ t('features_detail.smart_title') }}</h3>
                          <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.smart_desc') }}</p>
                        </div>
                      </div>
                      <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-red-100 dark:bg-red-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <LayoutGrid class="w-6 h-6 text-red-600 dark:text-red-400" />
-                       </div>
+                       <LayoutGrid class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                        <div>
                          <h3 class="text-xl font-bold mb-2">{{ t('features_detail.duplicate_title') }}</h3>
                          <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.duplicate_desc') }}</p>
                        </div>
                      </div>
                       <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <Palette class="w-6 h-6 text-indigo-600 dark:text-indigo-400" />
-                       </div>
+                       <Palette class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                        <div>
                          <h3 class="text-xl font-bold mb-2">{{ t('features_detail.customizable_title') }}</h3>
                          <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.customizable_desc') }}</p>
                        </div>
                      </div>
                       <div class="flex items-start gap-4">
-                       <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center flex-shrink-0">
-                         <Shield class="w-6 h-6 text-green-600 dark:text-green-400" />
-                       </div>
+                       <Shield class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
                        <div>
                          <h3 class="text-xl font-bold mb-2">{{ t('features_detail.secure_title') }}</h3>
                          <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.secure_desc') }}</p>
@@ -428,7 +409,7 @@ const techStack = computed(() => [
                          <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.feedback_desc') }}</p>
                        </div>
                        <div class="flex gap-4">
-                         <Button as-child class="bg-purple-600 text-white hover:bg-purple-700">
+                         <Button as-child class="bg-primary text-primary-foreground hover:bg-primary-dark">
                             <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank">
                                 {{ t('cta.btn_feedback') }}
                             </a>
@@ -467,7 +448,7 @@ const techStack = computed(() => [
             {{ t('cta.desc') }}
           </p>
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" class="h-14 px-8 text-lg w-full sm:w-auto shadow-xl shadow-blue-500/20" as-child>
+            <Button size="lg" class="h-14 px-8 text-lg w-full sm:w-auto shadow-sm" as-child>
               <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank" rel="noreferrer">
                 {{ t('cta.btn_add') }}
               </a>
