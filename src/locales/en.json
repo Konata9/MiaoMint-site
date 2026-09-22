@@ -1,100 +1,274 @@
 {
-  "hero": {
-    "title_main": "MiaoMint",
-    "title_sub": "Your Browser's Spotlight",
-    "headline_prefix": "Search tabs, bookmarks & history",
-    "headline_highlight": "with Alt/Opt + M",
-    "description": "A lightweight Chrome extension that brings Spotlight-style search to your browser. Fast, private, and completely free.",
-    "btn_add": "Add to Chrome - Free",
-    "badge_shortcut": "Alt/Opt + M"
-  },
-  "core_features": {
-    "title": "Why MiaoMint?",
-    "hybrid_title": "Hybrid Search",
-    "hybrid_desc": "Search across your open tabs, bookmarks, and browsing history simultaneously. Intelligent deduplication and smart ranking.",
-    "hybrid_meta": "/b bookmarks • /h history • /freq frequent • /dup duplicates",
-    "keyboard_title": "Keyboard First",
-    "keyboard_desc": "Designed for keyboard warriors. Stay in flow without touching the mouse. All essential actions are just a keystroke away.",
-    "keyboard_meta": "Alt/Opt+M • ↑/↓ • Enter • Esc",
-    "privacy_title": "Privacy First",
-    "privacy_desc": "All data processed locally. No servers, no tracking, no data collection. Your browsing data stays on your device.",
-    "privacy_meta": "100% Local Processing • No Telemetry"
-  },
-  "shortcuts": {
-    "title": "Designed for Speed",
-    "subtitle": "Master your browser with keyboard shortcuts. No mouse required.",
-    "core_title": "Core Shortcuts",
-    "advanced_title": "Advanced Features",
-    "tab_management": "Tab Management",
-    "open_close": "Open/Close Search",
-    "navigate": "Navigate Results",
-    "open_selected": "Open Selected",
-    "close": "Close Search",
-    "force_web": "Force Web Search",
-    "bookmark_search": "Bookmark Search",
-    "history_search": "History Search",
-    "frequent_search": "Smart Recommendations",
-    "duplicate_search": "Duplicate Tabs",
-    "open_settings": "Open Settings",
-    "close_tab": "Close Tab",
-    "toggle_duplicate": "Toggle Duplicate Mode",
-    "close_all_duplicates": "Close All Duplicates"
-  },
-  "features_detail": {
-    "title": "Powerful Features",
-    "subtitle": "Designed for the modern browsing experience",
-    "smart_title": "Smart Recommendations",
-    "smart_desc": "Intelligent recommendations based on visit frequency and timing to quickly find your frequently used pages.",
-    "duplicate_title": "Duplicate Detection",
-    "duplicate_desc": "Automatically identifies duplicate tabs with batch closing support to keep your browser clean.",
-    "customizable_title": "Customizable",
-    "customizable_desc": "Supports theme switching, opacity adjustment, and multilingual interface.",
-    "performance_title": "Performance Optimized",
-    "performance_desc": "Lightweight design with fast startup that doesn't affect browser performance.",
-    "secure_title": "Secure & Reliable",
-    "secure_desc": "All data processed locally with no personal information uploaded anywhere.",
-    "feedback_title": "Feedback Welcome",
-    "feedback_desc": "If you have any questions or suggestions, feel free to contact us through the Chrome Web Store."
-  },
-  "techstack": {
-    "title": "Built with Modern Tech",
-    "vue": "Reactive UI",
-    "ts": "Type Safety",
-    "vite": "Fast Builds",
-    "tailwind": "Utility First",
-    "crx": "Extension API"
-  },
-  "features": {
-    "tag_fast": "Fast",
-    "tag_keyboard": "Keyboard-first",
-    "tag_privacy": "Privacy-focused",
-    "title": "Deep Dive Preview",
-    "subtitle": "See MiaoMint in action with these interactive previews.",
-    "unified_title": "Unified Search",
-    "unified_desc": "One input for tabs, bookmarks, history, URL navigation, and web search fallback.",
-    "keyboard_title": "Keyboard Workflow",
-    "keyboard_desc": "Alt/Opt + M to open, ↑/↓ to navigate, Enter to open, Esc to close.",
-    "command_title": "Command Modes",
-    "command_desc": "Use /b for bookmarks, /h for history, /freq for recommendations, /dup for duplicates, /setting for preferences.",
-    "polished_title": "Polished & Personal",
-    "polished_desc": "Themes, opacity control, and multilingual UI with instant updates.",
-    "privacy_title": "Privacy by Design",
-    "privacy_desc": "No backend. Your data stays on-device, only used to power search and navigation."
-  },
-  "cta": {
-    "title": "Ready to speed up your workflow?",
-    "desc": "Join users who have stopped digging through tabs and started finding them instantly.",
-    "btn_add": "Add to Chrome for Free",
-    "btn_feedback": "Send Feedback",
-    "footer": "Free to Use • Local Data • No Tracking"
-  },
-  "layout": {
-    "home": "Home",
+  "nav": {
+    "capabilities": "Capabilities",
+    "install": "Install",
     "privacy": "Privacy",
     "blog": "Blog",
-    "language": "Switch Language",
-    "add_to_chrome": "Add to Chrome",
-    "built_by": "Built by Konata9."
+    "language": "Language",
+    "add_to_chrome": "Add to Chrome"
+  },
+  "hero": {
+    "eyebrow": "Chrome extension · command palette",
+    "title": "Find any tab, bookmark, or page, without leaving the keyboard.",
+    "lede": "MiaoMint opens a Spotlight-style palette over any page. Search your open tabs, bookmarks, and history in one field, then jump straight to the result.",
+    "cta_primary": "Add to Chrome — Free",
+    "cta_secondary": "Send feedback",
+    "facts": [
+      "Free · no paid tier",
+      "Chrome + Chromium",
+      "v1.1.1",
+      "Reads offline",
+      "4 languages",
+      "No account needed"
+    ]
+  },
+  "commandCard": {
+    "file": "miaomint — command palette",
+    "chip": "local only",
+    "openLabel": "open anywhere",
+    "openCmd": "Alt/Opt + M",
+    "openDesc": "open the palette",
+    "modesLabel": "search modes",
+    "modes": [
+      { "cmd": "/b", "label": "bookmarks" },
+      { "cmd": "/h", "label": "history" },
+      { "cmd": "/freq", "label": "recommendations" },
+      { "cmd": "/dup", "label": "duplicate tabs" },
+      { "cmd": "/set", "label": "settings" }
+    ],
+    "keysLabel": "keys",
+    "keys": [
+      { "key": "↑ ↓", "label": "navigate" },
+      { "key": "Enter", "label": "open" },
+      { "key": "Esc", "label": "close" },
+      { "key": "Cmd/Ctrl + Enter", "label": "web search" }
+    ],
+    "foot": ["no backend", "no telemetry", "4 languages"]
+  },
+  "sources": {
+    "label": "One field searches five sources",
+    "items": [
+      "Open tabs",
+      "Bookmarks",
+      "History",
+      "URL navigation",
+      "Web search"
+    ]
+  },
+  "tour": {
+    "title": "See what it looks like in use.",
+    "lede": "Every capture below is the real extension, running over a live page.",
+    "slides": [
+      {
+        "title": "Unified search",
+        "desc": "One field for open tabs, bookmarks, history, URLs, and web search, ranked and de-duplicated."
+      },
+      {
+        "title": "Open tabs",
+        "desc": "Every open tab in one list, with the current tab ranked first."
+      },
+      {
+        "title": "Bookmarks",
+        "desc": "Type /b to search bookmarks. They load only when you ask, so startup stays fast."
+      },
+      {
+        "title": "History",
+        "desc": "Type /h to search visited pages without loading your whole history up front."
+      },
+      {
+        "title": "Personalization",
+        "desc": "Theme, window opacity, and interface language, saved to Chrome sync."
+      },
+      {
+        "title": "Demo",
+        "desc": "Alt/Opt + M, arrow keys, Enter, Esc — the full open-search-open loop."
+      }
+    ]
+  },
+  "features": {
+    "title": "What it does, and how far to trust it.",
+    "lede": "Each capability is labelled by where its data comes from. Anything read from your browser stays in your browser.",
+    "columns": ["Capability", "What it does", "Scope"],
+    "items": [
+      {
+        "name": "Hybrid search",
+        "sub": "Tabs · bookmarks · history",
+        "desc": "One field queries all three at once and de-duplicates the results, so a page you have open and the same page from last week are one match, not two.",
+        "mode": "core"
+      },
+      {
+        "name": "Keyboard-first",
+        "sub": "Alt/Opt + M",
+        "desc": "Open with a shortcut, move with the arrow keys, open with Enter, dismiss with Esc. Your hands never leave the keys.",
+        "mode": "keys"
+      },
+      {
+        "name": "Duplicate cleanup",
+        "sub": "/dup",
+        "desc": "See every duplicated tab in one list, then close the extras in a single action. Nothing is closed without a keypress.",
+        "mode": "cleanup"
+      },
+      {
+        "name": "Smart recommendations",
+        "sub": "/freq",
+        "desc": "Frequent and recent pages surface on their own, ranked by how often and how recently you use them. The ranking is computed on-device.",
+        "mode": "ranking"
+      },
+      {
+        "name": "Command modes",
+        "sub": "/b /h /freq /dup /set",
+        "desc": "Scope the search with a prefix instead of a menu: bookmarks, history, recommendations, duplicates, or settings.",
+        "mode": "modes"
+      },
+      {
+        "name": "Personalization",
+        "sub": "theme · opacity · language",
+        "desc": "Pick a theme, set the window opacity, and switch the interface language. Preferences sync through Chrome, not through us.",
+        "mode": "ui"
+      }
+    ]
+  },
+  "how": {
+    "title": "Open, search, act.",
+    "lede": "Three steps, and the third one is the only one that changes anything on screen.",
+    "steps": [
+      {
+        "idx": "01",
+        "title": "Open",
+        "desc": "Press Alt/Opt + M on any page. The palette is injected at page load, so it appears without waiting for the page to finish rendering."
+      },
+      {
+        "idx": "02",
+        "title": "Search",
+        "desc": "One field queries open tabs, bookmarks, and history together, de-duplicates them, and ranks the most likely match first."
+      },
+      {
+        "idx": "03",
+        "title": "Act",
+        "desc": "Open the result with Enter, close a tab with Delete, or close every duplicate in one action. Nothing is written anywhere."
+      }
+    ],
+    "split": [
+      {
+        "label": "Reads",
+        "title": "Local and offline",
+        "desc": "Tabs, bookmarks, and history are read in your browser's memory. No network call is required to search them."
+      },
+      {
+        "label": "Writes",
+        "title": "Nothing is stored",
+        "desc": "There is no backend and no analytics. Your browsing data is never uploaded, and nothing leaves the device."
+      }
+    ]
+  },
+  "principles": {
+    "title": "The rules it will not break.",
+    "items": [
+      {
+        "idx": "P1",
+        "title": "Nothing leaves your device",
+        "desc": "Tabs, bookmarks, and history are read and searched in memory. There is no backend to send them to."
+      },
+      {
+        "idx": "P2",
+        "title": "No account, no sign-in",
+        "desc": "Install it and use it. No email, no login, no profile."
+      },
+      {
+        "idx": "P3",
+        "title": "Instant, not heavy",
+        "desc": "Injected at page load, with bookmarks and history loaded only when you ask, so it never slows the browser down."
+      },
+      {
+        "idx": "P4",
+        "title": "Free forever",
+        "desc": "Every feature is in the one free extension. No paid tier, no subscription, no upsell."
+      }
+    ]
+  },
+  "install": {
+    "title": "Add it in one click.",
+    "lede": "Install from the Chrome Web Store and start searching. No setup, no account, no configuration required.",
+    "cards": [
+      {
+        "label": "Chrome Web Store",
+        "title": "One click, no setup",
+        "list": [
+          "Install straight from the Chrome Web Store.",
+          "Works in Chrome and Chromium-based browsers.",
+          "No account, no sign-in, no onboarding."
+        ],
+        "cmd": "Chrome Web Store · Free",
+        "cta": "Add to Chrome"
+      },
+      {
+        "label": "Requirements",
+        "title": "Lightweight by design",
+        "list": [
+          "Chrome or any Chromium-based browser.",
+          "No backend, no telemetry, no account.",
+          "Bookmarks and history load only on demand."
+        ],
+        "cmd": "Manifest V3 · injected at document_start"
+      }
+    ],
+    "note": {
+      "label": "Permissions",
+      "text": "MiaoMint reads tabs, bookmarks, and history only to power search. The all-sites permission exists so the palette can be injected into any page you visit — no page content is read beyond showing the search bar."
+    }
+  },
+  "faq": {
+    "title": "Questions worth asking.",
+    "items": [
+      {
+        "q": "How is this different from Chrome's built-in tab search?",
+        "a": "Chrome's tab search only looks at open tabs. MiaoMint searches open tabs, bookmarks, and history in the same field, adds duplicate detection and frequency-based recommendations, and opens from any page with Alt/Opt + M."
+      },
+      {
+        "q": "Is it really free?",
+        "a": "Yes. MiaoMint is free to use. There is no paid tier, no subscription, and no account."
+      },
+      {
+        "q": "What data does it collect?",
+        "a": "None. There is no backend and no analytics. Tabs, bookmarks, and history are processed locally in your browser and never uploaded."
+      },
+      {
+        "q": "Why does it need access to all sites?",
+        "a": "The search bar is injected into the page you are on so the shortcut works everywhere. MiaoMint does not read page content beyond displaying the bar."
+      },
+      {
+        "q": "Does it work offline?",
+        "a": "Yes. Search runs locally, so it works without a connection. Web search fallback uses your default search engine."
+      },
+      {
+        "q": "Which languages are supported?",
+        "a": "English, Simplified Chinese, Traditional Chinese, and Japanese. You can switch at any time from the settings."
+      },
+      {
+        "q": "Where do my settings go?",
+        "a": "Theme, opacity, and language are stored with chrome.storage.sync, so they can follow you across signed-in Chrome devices."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Point it at your tabs and see what you have.",
+    "lede": "Free, local-only, and read-only until you choose a result.",
+    "primary": "Add to Chrome for free",
+    "secondary": "Send feedback"
+  },
+  "footer": {
+    "tagline": "Local-first. No backend. One keystroke away.",
+    "links": {
+      "privacy": "Privacy",
+      "feedback": "Feedback",
+      "blog": "Blog",
+      "store": "Chrome Web Store"
+    },
+    "bottom": ["Free · no paid tier", "v1.1.1", "Not affiliated with Google."]
+  },
+  "layout": {
+    "language": "Language",
+    "skip": "Skip to content"
   },
   "meta": {
     "title": "MiaoMint — Command Palette for Chrome Tabs, Bookmarks & History",
@@ -135,8 +309,8 @@
     "your_rights_title": "5. Your Rights",
     "your_rights_text": "Since we do not collect your data, there is no data for us to delete or export upon request. You have full control over the local data stored by the extension:",
     "your_rights_list": {
-        "item1": "You can uninstall the extension to immediately remove all associated local data.",
-        "item2": "If you have Chrome Sync enabled, you can disable sync or clear synced data via your browser sync settings."
+      "item1": "You can uninstall the extension to immediately remove all associated local data.",
+      "item2": "If you have Chrome Sync enabled, you can disable sync or clear synced data via your browser sync settings."
     },
     "changes_title": "6. Changes to This Policy",
     "changes_text": "We may update this privacy policy from time to time. If we make significant changes, we will notify you by updating the date at the top of this policy and, where appropriate, through the extension.",

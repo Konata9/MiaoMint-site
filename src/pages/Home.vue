@@ -1,21 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { useTitle } from '@vueuse/core'
 import Layout from '../Layout.vue'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent } from '@/components/ui/card'
-import { 
-  Search, Shield, Bookmark, Palette, LayoutGrid, X, 
-  Keyboard, Command, ArrowUp, ArrowDown, CornerDownLeft, 
-  FileCode, Users, Gift, Star, Zap
-} from 'lucide-vue-next'
 
-const { t } = useI18n()
+const { t, tm } = useI18n()
 useTitle(() => t('meta.title'))
-
-const selectedImage = ref<string | null>(null)
-const activeFeatureIndex = ref(0)
 
 const withBase = (path: string) => {
   const base = import.meta.env.BASE_URL
@@ -23,481 +13,458 @@ const withBase = (path: string) => {
   return `${base}${cleanPath}`
 }
 
-// Deep Dive Features (Existing)
-const features = computed(() => [
-  {
-    icon: Search,
-    title: t('features.unified_title'),
-    description: t('features.unified_desc'),
-    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
-    image: '/images/search-tab.png'
-  },
-  {
-    icon: LayoutGrid,
-    title: t('features.keyboard_title'),
-    description: t('features.keyboard_desc'),
-    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
-    image: '/images/list-tab.png'
-  },
-  {
-    icon: Bookmark,
-    title: t('features.command_title'),
-    description: t('features.command_desc'),
-    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
-    image: '/images/list-bookmark.png'
-  },
-  {
-    icon: Palette,
-    title: t('features.polished_title'),
-    description: t('features.polished_desc'),
-    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
-    image: '/images/setting-page.png'
-  },
-  {
-    icon: Shield,
-    title: t('features.privacy_title'),
-    description: t('features.privacy_desc'),
-    accentClass: 'text-primary bg-primary/10 dark:bg-primary/20 dark:text-primary',
-    image: '/images/list-history.png'
-  },
-])
+const storeUrl =
+  'https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en'
+const reviewsUrl = `${storeUrl}&tab=reviews`
 
-// Tech Stack Data
-const techStack = computed(() => [
-    { name: 'Vue 3', desc: t('techstack.vue'), icon: 'V', color: 'text-green-500' },
-    { name: 'TypeScript', desc: t('techstack.ts'), icon: 'TS', color: 'text-blue-500' },
-    { name: 'Vite', desc: t('techstack.vite'), icon: 'V', color: 'text-primary' },
-    { name: 'Tailwind', desc: t('techstack.tailwind'), icon: 'TW', color: 'text-cyan-500' },
-    { name: 'Extension API', desc: t('techstack.crx'), icon: 'CRX', color: 'text-orange-500' },
-])
+/* ---------- Hero ---------- */
+const facts = computed(() => tm('hero.facts') as unknown as string[])
+const card = computed(
+  () =>
+    tm('commandCard') as unknown as {
+      file: string
+      chip: string
+      openLabel: string
+      openCmd: string
+      openDesc: string
+      modesLabel: string
+      modes: Array<{ cmd: string; label: string }>
+      keysLabel: string
+      keys: Array<{ key: string; label: string }>
+      foot: string[]
+    }
+)
+
+/* ---------- Sources strip ---------- */
+const sources = computed(
+  () =>
+    tm('sources') as unknown as { label: string; items: string[] }
+)
+
+/* ---------- Tour carousel ---------- */
+const tourCopy = computed(
+  () => tm('tour') as unknown as { title: string; lede: string; slides: Array<{ title: string; desc: string }> }
+)
+const tourAssets: Array<{ image?: string; video?: string; poster?: string }> = [
+  { image: '/images/search-tab.png' },
+  { image: '/images/list-tab.png' },
+  { image: '/images/list-bookmark.png' },
+  { image: '/images/list-history.png' },
+  { image: '/images/setting-page.png' },
+  { video: '/video/miaomint-demo.mp4', poster: '/images/demo-poster.jpg' }
+]
+const tourSlides = computed(() =>
+  tourAssets.map((asset, i) => ({
+    ...asset,
+    title: tourCopy.value.slides[i]?.title ?? '',
+    desc: tourCopy.value.slides[i]?.desc ?? ''
+  }))
+)
+const slideCount = computed(() => tourSlides.value.length)
+
+const trackRef = ref<HTMLElement | null>(null)
+const current = ref(0)
+const reduceMotion =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+const scrollToSlide = (i: number) => {
+  const track = trackRef.value
+  if (!track) return
+  const clamped = Math.max(0, Math.min(i, slideCount.value - 1))
+  const slide = track.children[clamped] as HTMLElement | undefined
+  if (!slide) return
+  track.scrollTo({
+    left: slide.offsetLeft - track.offsetLeft,
+    behavior: reduceMotion ? 'auto' : 'smooth'
+  })
+}
+
+const onTrackScroll = () => {
+  const track = trackRef.value
+  if (!track) return
+  const children = Array.from(track.children) as HTMLElement[]
+  let best = 0
+  let bestDist = Infinity
+  children.forEach((el, i) => {
+    const d = Math.abs(el.offsetLeft - track.offsetLeft - track.scrollLeft)
+    if (d < bestDist) {
+      bestDist = d
+      best = i
+    }
+  })
+  current.value = best
+}
+
+const prev = () => scrollToSlide(current.value - 1)
+const next = () => scrollToSlide(current.value + 1)
+
+onMounted(() => {
+  current.value = 0
+})
+
+/* ---------- Capabilities ---------- */
+const features = computed(
+  () =>
+    tm('features') as unknown as {
+      title: string
+      lede: string
+      columns: string[]
+      items: Array<{ name: string; sub: string; desc: string; mode: string }>
+    }
+)
+
+/* ---------- How (band) ---------- */
+const how = computed(
+  () =>
+    tm('how') as unknown as {
+      title: string
+      lede: string
+      steps: Array<{ idx: string; title: string; desc: string }>
+      split: Array<{ label: string; title: string; desc: string }>
+    }
+)
+
+/* ---------- Principles ---------- */
+const principles = computed(
+  () =>
+    tm('principles') as unknown as {
+      title: string
+      items: Array<{ idx: string; title: string; desc: string }>
+    }
+)
+
+/* ---------- Install ---------- */
+const install = computed(
+  () =>
+    tm('install') as unknown as {
+      title: string
+      lede: string
+      cards: Array<{
+        label: string
+        title: string
+        list: string[]
+        cmd: string
+        cta?: string
+      }>
+      note: { label: string; text: string }
+    }
+)
+
+/* ---------- FAQ ---------- */
+const faq = computed(
+  () =>
+    tm('faq') as unknown as {
+      title: string
+      items: Array<{ q: string; a: string }>
+    }
+)
 </script>
 
 <template>
   <Layout>
-    <!-- 1. Hero Section -->
-    <section class="relative overflow-hidden pt-10 pb-20 bg-gray-950 text-white">
-
-      <div class="container mx-auto px-4 py-10 md:py-20 text-center">
-        <!-- Logo & Title -->
-        <div class="mb-8 animate-fade-in-up">
-           <div class="inline-flex items-center gap-3 mb-4">
-             <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center backdrop-blur-sm border border-white/10">
-                <img :src="withBase('/logo.png')" alt="MiaoMint logo" class="h-8 w-8" />
-             </div>
-             <h1 class="text-5xl font-bold tracking-tight">{{ t('hero.title_main') }}</h1>
-           </div>
-           <p class="text-gray-400 text-lg">{{ t('hero.title_sub') }}</p>
+    <!-- ============ Hero · split diptych ============ -->
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <p class="hero__eyebrow mono-label">{{ t('hero.eyebrow') }}</p>
+          <h1 class="hero__h1">{{ t('hero.title') }}</h1>
+          <p class="hero__lede">{{ t('hero.lede') }}</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary btn--lg" :href="storeUrl" target="_blank" rel="noreferrer">
+              {{ t('hero.cta_primary') }}
+            </a>
+            <a class="btn btn--ghost btn--lg" :href="reviewsUrl" target="_blank" rel="noreferrer">
+              {{ t('hero.cta_secondary') }}
+            </a>
+          </div>
+          <ul class="hero__facts">
+            <li v-for="fact in facts" :key="fact">{{ fact }}</li>
+          </ul>
         </div>
 
-        <!-- Headline -->
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight animate-fade-in-up animation-delay-100">
-           {{ t('hero.headline_prefix') }} <br class="hidden md:block" />
-           <span class="text-cyan-400">{{ t('hero.headline_highlight') }}</span>
-        </h2>
-
-        <p class="text-xl text-gray-400 mb-10 max-w-2xl mx-auto animate-fade-in-up animation-delay-200">
-          {{ t('hero.description') }}
-        </p>
-
-        <!-- Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up animation-delay-300">
-            <Button size="lg" class="bg-cyan-600 hover:bg-cyan-700 text-white px-8 h-14 text-lg" as-child>
-                <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank">
-                  {{ t('hero.btn_add') }}
-                </a>
-            </Button>
-        </div>
-
-        <!-- Video Preview (Centered) -->
-        <div class="relative max-w-4xl mx-auto rounded-xl overflow-hidden border border-white/10 animate-fade-in-up animation-delay-500">
-            <div class="absolute top-0 left-0 right-0 h-8 bg-gray-900/90 backdrop-blur flex items-center px-4 gap-1.5 z-10 border-b border-white/5">
-                <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
-                <div class="w-3 h-3 rounded-full bg-amber-400/80"></div>
-                <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
+        <div class="code-card">
+          <div class="code-card__bar">
+            <span class="code-card__file">{{ card.file }}</span>
+            <span class="chip chip--ok">{{ card.chip }}</span>
+          </div>
+          <div class="code-card__body">
+            <div class="cmd-group">
+              <p class="cmd-label"># {{ card.openLabel }}</p>
+              <p class="cmd-row">
+                <span class="tok-key">{{ card.openCmd }}</span>
+                <span class="tok-punct">{{ card.openDesc }}</span>
+              </p>
             </div>
-            <video
-                class="w-full aspect-video object-cover bg-gray-900"
-                :src="withBase('/video/miaomint-demo.mp4')"
-                controls
-                muted
-                autoplay
-                loop
-                playsinline
-            />
-        </div>
-      </div>
-    </section>
-
-    <!-- 2. Core Features (3 Cards) -->
-    <section class="py-20 bg-gray-50 dark:bg-gray-900">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12">{{ t('core_features.title') }}</h2>
-        <div class="grid md:grid-cols-3 gap-8">
-            <!-- Card 1 -->
-            <Card class="border-none shadow-sm transition-shadow dark:bg-gray-800">
-                <CardContent class="p-8">
-                    <Search class="w-7 h-7 text-primary mb-6" />
-                    <h3 class="text-xl font-bold mb-3">{{ t('core_features.hybrid_title') }}</h3>
-                    <p class="text-muted-foreground mb-4">{{ t('core_features.hybrid_desc') }}</p>
-                    <div class="text-sm text-muted-foreground bg-muted p-2 rounded">
-                        {{ t('core_features.hybrid_meta') }}
-                    </div>
-                </CardContent>
-            </Card>
-             <!-- Card 2 -->
-            <Card class="border-none shadow-sm transition-shadow dark:bg-gray-800">
-                <CardContent class="p-8">
-                    <Keyboard class="w-7 h-7 text-primary mb-6" />
-                    <h3 class="text-xl font-bold mb-3">{{ t('core_features.keyboard_title') }}</h3>
-                    <p class="text-muted-foreground mb-4">{{ t('core_features.keyboard_desc') }}</p>
-                    <div class="text-sm text-muted-foreground bg-muted p-2 rounded">
-                        {{ t('core_features.keyboard_meta') }}
-                    </div>
-                </CardContent>
-            </Card>
-             <!-- Card 3 -->
-            <Card class="border-none shadow-sm transition-shadow dark:bg-gray-800">
-                <CardContent class="p-8">
-                    <Shield class="w-7 h-7 text-primary mb-6" />
-                    <h3 class="text-xl font-bold mb-3">{{ t('core_features.privacy_title') }}</h3>
-                    <p class="text-muted-foreground mb-4">{{ t('core_features.privacy_desc') }}</p>
-                    <div class="text-sm text-muted-foreground bg-muted p-2 rounded">
-                        {{ t('core_features.privacy_meta') }}
-                    </div>
-                </CardContent>
-            </Card>
-        </div>
-      </div>
-    </section>
-
-    <!-- 3. Deep Dive (Existing Interactive Section) -->
-    <section id="features" class="container mx-auto px-4 py-16 md:py-24">
-       <div class="mx-auto max-w-3xl text-center space-y-4 mb-16">
-         <!-- Tags -->
-         <div class="inline-flex items-center gap-2 rounded-full border bg-background px-3 py-1 text-sm text-muted-foreground">
-          <span>{{ t('features.tag_fast') }}</span>
-          <span class="text-foreground/50">•</span>
-          <span>{{ t('features.tag_keyboard') }}</span>
-          <span class="text-foreground/50">•</span>
-          <span>{{ t('features.tag_privacy') }}</span>
-        </div>
-        <h2 class="text-3xl font-bold">{{ t('features.title') }}</h2>
-        <p class="text-muted-foreground text-lg">{{ t('features.subtitle') }}</p>
-      </div>
-      
-       <div class="grid lg:grid-cols-12 gap-8 items-center max-w-7xl mx-auto">
-        <!-- Left: Feature List -->
-        <div class="lg:col-span-5 space-y-4">
-          <div 
-            v-for="(feature, index) in features" 
-            :key="feature.title"
-            class="group p-4 rounded-xl cursor-pointer transition-colors duration-150 border border-transparent"
-            :class="activeFeatureIndex === index ? 'bg-muted/50 border-border shadow-sm' : 'hover:bg-muted/30'"
-            @mouseenter="activeFeatureIndex = index"
-          >
-             <div class="flex items-center gap-4">
-              <div 
-                class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-colors duration-300"
-                :class="activeFeatureIndex === index ? feature.accentClass : 'bg-muted text-muted-foreground'"
-              >
-                <component :is="feature.icon" class="h-5 w-5" />
-              </div>
-              <div class="space-y-1">
-                <h3 class="font-semibold text-foreground transition-colors" :class="{ 'text-primary': activeFeatureIndex === index }">
-                  {{ feature.title }}
-                </h3>
-                <p 
-                  class="text-sm text-muted-foreground transition duration-150 overflow-hidden"
-                  :class="activeFeatureIndex === index ? 'max-h-20 opacity-100 mt-1' : 'max-h-0 opacity-0'"
-                >
-                  {{ feature.description }}
-                </p>
-              </div>
+            <div class="cmd-group">
+              <p class="cmd-label"># {{ card.modesLabel }}</p>
+              <p v-for="m in card.modes" :key="m.cmd" class="cmd-row">
+                <span class="tok-key">{{ m.cmd }}</span>
+                <span class="tok-punct">{{ m.label }}</span>
+              </p>
+            </div>
+            <div class="cmd-group">
+              <p class="cmd-label"># {{ card.keysLabel }}</p>
+              <p v-for="k in card.keys" :key="k.key" class="cmd-row">
+                <span class="tok-key">{{ k.key }}</span>
+                <span class="tok-punct">{{ k.label }}</span>
+              </p>
             </div>
           </div>
+          <ul class="code-card__foot">
+            <li v-for="item in card.foot" :key="item">{{ item }}</li>
+          </ul>
         </div>
-         <!-- Right: Preview -->
-         <div class="lg:col-span-7">
-          <div class="relative aspect-[16/10] w-full overflow-hidden rounded-xl border bg-zinc-950 shadow-sm ring-1 ring-white/10">
-             <!-- Traffic Lights -->
-             <div class="absolute top-0 left-0 right-0 h-8 bg-muted/80 backdrop-blur flex items-center px-4 gap-1.5 z-20 border-b">
-                <div class="w-3 h-3 rounded-full bg-red-400/80"></div>
-                <div class="w-3 h-3 rounded-full bg-amber-400/80"></div>
-                <div class="w-3 h-3 rounded-full bg-green-400/80"></div>
-              </div>
-              
-              <!-- Images with Transition -->
-              <TransitionGroup name="fade">
-                <div 
-                  v-for="(feature, index) in features" 
-                  :key="feature.title"
-                  v-show="activeFeatureIndex === index"
-                  class="absolute inset-0 pt-8 flex items-center justify-center bg-zinc-900 cursor-zoom-in"
-                  @click="selectedImage = withBase(feature.image)"
-                >
-                  <img 
-                    :src="withBase(feature.image)" 
-                    :alt="feature.title"
-                    class="w-full h-full object-contain p-1"
+      </div>
+    </section>
+
+    <!-- ============ Sources strip ============ -->
+    <section class="sources" aria-label="Search sources">
+      <div class="container sources__inner">
+        <p class="sources__label mono-label">{{ sources.label }}</p>
+        <ul class="sources__list">
+          <li v-for="item in sources.items" :key="item">{{ item }}</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 01 · Tour · screenshot carousel ============ -->
+    <section class="section" id="tour">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head__body">
+            <h2 class="sec-head__title">{{ tourCopy.title }}</h2>
+            <p class="lede">{{ tourCopy.lede }}</p>
+          </div>
+        </div>
+
+        <div class="carousel">
+          <div class="carousel__viewport">
+            <div
+              ref="trackRef"
+              class="carousel__track"
+              tabindex="0"
+              :aria-label="tourCopy.title"
+              @scroll="onTrackScroll"
+            >
+              <figure v-for="(slide, i) in tourSlides" :key="i" class="carousel__slide">
+                <figcaption class="carousel__cap">
+                  <span class="carousel__idx">{{ String(i + 1).padStart(2, '0') }}</span>
+                  <div>
+                    <h3 class="carousel__title">{{ slide.title }}</h3>
+                    <p class="carousel__desc">{{ slide.desc }}</p>
+                  </div>
+                </figcaption>
+                <div class="carousel__frame">
+                  <video
+                    v-if="slide.video"
+                    :src="withBase(slide.video)"
+                    :poster="withBase(slide.poster as string)"
+                    controls
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                  />
+                  <img
+                    v-else
+                    :src="withBase(slide.image as string)"
+                    :alt="slide.title"
+                    :loading="i === 0 ? 'eager' : 'lazy'"
                   />
                 </div>
-              </TransitionGroup>
+              </figure>
+            </div>
+
+            <div class="carousel__arrows">
+              <button
+                class="carousel__btn"
+                type="button"
+                :disabled="current === 0"
+                aria-label="Previous"
+                @click="prev"
+              >
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+                  <path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <button
+                class="carousel__btn"
+                type="button"
+                :disabled="current === slideCount - 1"
+                aria-label="Next"
+                @click="next"
+              >
+                <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+                  <path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <div class="carousel__pager">
+            <div class="carousel__dots" role="group" aria-label="Choose a screenshot">
+              <button
+                v-for="(slide, i) in tourSlides"
+                :key="i"
+                class="carousel__dot"
+                type="button"
+                :aria-current="i === current"
+                :aria-label="slide.title"
+                @click="scrollToSlide(i)"
+              ></button>
+            </div>
+            <p class="carousel__counter">
+              <b>{{ current + 1 }}</b> / {{ slideCount }}
+            </p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 4. Shortcuts Section -->
-    <section class="py-20 bg-gray-900 text-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4">{{ t('shortcuts.title') }}</h2>
-            <p class="text-gray-400 text-center mb-12 max-w-2xl mx-auto">{{ t('shortcuts.subtitle') }}</p>
-
-            <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
-                <!-- Core -->
-                <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                        <Zap class="w-5 h-5 text-primary" />
-                        {{ t('shortcuts.core_title') }}
-                    </h3>
-                    <div class="space-y-4">
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.open_close') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono ">Alt/Opt + M</kbd>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.navigate') }}</span>
-                           <div class="flex gap-1">
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">↑</kbd>
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">↓</kbd>
-                           </div>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.open_selected') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Enter</kbd>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.close') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Esc</kbd>
-                         </div>
-                    </div>
-                </div>
-                 <!-- Advanced -->
-                <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                        <Command class="w-5 h-5 text-primary" />
-                        {{ t('shortcuts.advanced_title') }}
-                    </h3>
-                    <div class="space-y-4">
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.force_web') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono ">Cmd/Ctrl + Enter</kbd>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.bookmark_search') }}</span>
-                           <div class="flex items-center gap-1">
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">/</kbd>
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">b</kbd>
-                           </div>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.history_search') }}</span>
-                           <div class="flex items-center gap-1">
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">/</kbd>
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">h</kbd>
-                           </div>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.frequent_search') }}</span>
-                           <div class="flex items-center gap-1">
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">/</kbd>
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">freq</kbd>
-                           </div>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.duplicate_search') }}</span>
-                           <div class="flex items-center gap-1">
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">/</kbd>
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">dup</kbd>
-                           </div>
-                         </div>
-                          <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.open_settings') }}</span>
-                           <div class="flex items-center gap-1">
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">/</kbd>
-                             <kbd class="px-2 py-1 bg-gray-700 rounded text-sm font-mono">setting</kbd>
-                           </div>
-                         </div>
-                    </div>
-                </div>
-                 <!-- Tab Management -->
-                <div class="bg-gray-800/50 rounded-xl p-6 border border-gray-700">
-                    <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
-                        <Command class="w-5 h-5 text-primary" />
-                        {{ t('shortcuts.tab_management') }}
-                    </h3>
-                    <div class="space-y-4">
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.close_tab') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Cmd/Ctrl + W</kbd>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.close_tab') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Delete</kbd>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.toggle_duplicate') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Cmd/Ctrl + Shift + D</kbd>
-                         </div>
-                         <div class="flex items-center justify-between">
-                           <span class="text-gray-300">{{ t('shortcuts.close_all_duplicates') }}</span>
-                           <kbd class="px-3 py-1 bg-gray-700 rounded text-sm font-mono">Cmd/Ctrl + D</kbd>
-                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 5. Features Detail Section -->
-    <section class="py-20 bg-white dark:bg-gray-950">
-        <div class="container mx-auto px-4">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-12">
-                     <div class="inline-flex items-center gap-3 mb-4">
-                       <Zap class="w-10 h-10 text-primary" />
-                       <h2 class="text-3xl font-bold">{{ t('features_detail.title') }}</h2>
-                     </div>
-                     <p class="text-gray-600 dark:text-gray-400 text-lg">{{ t('features_detail.subtitle') }}</p>
-                </div>
-
-                <div class="grid md:grid-cols-2 gap-8 mb-12">
-                     <div class="flex items-start gap-4">
-                       <Zap class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                       <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.smart_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.smart_desc') }}</p>
-                       </div>
-                     </div>
-                     <div class="flex items-start gap-4">
-                       <LayoutGrid class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                       <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.duplicate_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.duplicate_desc') }}</p>
-                       </div>
-                     </div>
-                      <div class="flex items-start gap-4">
-                       <Palette class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                       <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.customizable_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.customizable_desc') }}</p>
-                       </div>
-                     </div>
-                      <div class="flex items-start gap-4">
-                       <Shield class="w-6 h-6 text-primary flex-shrink-0 mt-1" />
-                       <div>
-                         <h3 class="text-xl font-bold mb-2">{{ t('features_detail.secure_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.secure_desc') }}</p>
-                       </div>
-                     </div>
-                </div>
-
-                <div class="bg-gray-100 dark:bg-gray-800 rounded-xl p-8">
-                     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
-                       <div>
-                         <h3 class="text-2xl font-bold mb-2">{{ t('features_detail.feedback_title') }}</h3>
-                         <p class="text-gray-600 dark:text-gray-400">{{ t('features_detail.feedback_desc') }}</p>
-                       </div>
-                       <div class="flex gap-4">
-                         <Button as-child class="bg-primary text-primary-foreground hover:bg-primary-dark">
-                            <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank">
-                                {{ t('cta.btn_feedback') }}
-                            </a>
-                         </Button>
-                       </div>
-                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 6. Tech Stack -->
-    <section class="py-16 bg-gray-50 dark:bg-gray-900 border-t">
-        <div class="container mx-auto px-4">
-             <h2 class="text-2xl font-bold text-center mb-10">{{ t('techstack.title') }}</h2>
-             <div class="flex flex-wrap justify-center gap-8 md:gap-16">
-                 <div v-for="item in techStack" :key="item.name" class="text-center">
-                     <div class="w-16 h-16 bg-white dark:bg-gray-800 rounded-xl flex items-center justify-center mb-3 mx-auto shadow-sm border">
-                         <span class="text-2xl font-bold" :class="item.color">{{ item.icon }}</span>
-                     </div>
-                     <div class="font-semibold">{{ item.name }}</div>
-                     <div class="text-sm text-muted-foreground">{{ item.desc }}</div>
-                 </div>
-             </div>
-        </div>
-    </section>
-
-    <!-- 7. CTA (Existing) -->
-    <section class="border-t bg-muted/30">
-        <div class="container mx-auto px-4 py-16 md:py-24">
-        <div class="mx-auto max-w-3xl text-center space-y-8">
-          <h2 class="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-            {{ t('cta.title') }}
-          </h2>
-          <p class="text-lg text-muted-foreground">
-            {{ t('cta.desc') }}
-          </p>
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button size="lg" class="h-14 px-8 text-lg w-full sm:w-auto shadow-sm" as-child>
-              <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank" rel="noreferrer">
-                {{ t('cta.btn_add') }}
-              </a>
-            </Button>
-            <Button size="lg" variant="outline" class="h-14 px-8 text-lg w-full sm:w-auto" as-child>
-              <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en&tab=reviews" target="_blank" rel="noreferrer">
-                {{ t('cta.btn_feedback') }}
-              </a>
-            </Button>
+    <!-- ============ 02 · Capabilities · spec sheet ============ -->
+    <section class="section" id="features">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head__body">
+            <h2 class="sec-head__title">{{ features.title }}</h2>
+            <p class="lede">{{ features.lede }}</p>
           </div>
-          <p class="text-sm text-muted-foreground">
-            {{ t('cta.footer') }}
-          </p>
+        </div>
+
+        <div class="spec">
+          <div class="spec__head" aria-hidden="true">
+            <span v-for="col in features.columns" :key="col">{{ col }}</span>
+          </div>
+          <article v-for="item in features.items" :key="item.name" class="spec__row">
+            <h3 class="spec__name">
+              {{ item.name }}
+              <span class="spec__sub">{{ item.sub }}</span>
+            </h3>
+            <p class="spec__desc">{{ item.desc }}</p>
+            <span class="spec__mode">{{ item.mode }}</span>
+          </article>
         </div>
       </div>
     </section>
 
-    <!-- Lightbox (Existing) -->
-    <Teleport to="body">
-      <Transition
-        enter-active-class="transition duration-300 ease-out"
-        enter-from-class="opacity-0"
-        enter-to-class="opacity-100"
-        leave-active-class="transition duration-200 ease-in"
-        leave-from-class="opacity-100"
-        leave-to-class="opacity-0"
-      >
-        <div 
-          v-if="selectedImage" 
-          class="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 p-4 md:p-8" 
-          @click="selectedImage = null"
-        >
-          <div class="relative max-w-7xl w-full max-h-full flex items-center justify-center">
-            <button 
-              class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors p-2" 
-              @click.stop="selectedImage = null"
-            >
-              <X class="h-8 w-8" />
-              <span class="sr-only">Close</span>
-            </button>
-            <img 
-              :src="selectedImage" 
-              alt="Enlarged screenshot" 
-              class="max-w-full max-h-[85vh] rounded-lg shadow-2xl object-contain" 
-              @click.stop
-            />
+    <!-- ============ 03 · How · graphite band ============ -->
+    <section class="section band" id="how">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head__body">
+            <h2 class="sec-head__title">{{ how.title }}</h2>
+            <p class="lede">{{ how.lede }}</p>
           </div>
         </div>
-      </Transition>
-    </Teleport>
+
+        <div class="steps">
+          <article v-for="step in how.steps" :key="step.idx" class="step">
+            <p class="step__idx">{{ step.idx }}</p>
+            <h3 class="step__title">{{ step.title }}</h3>
+            <p class="step__desc">{{ step.desc }}</p>
+          </article>
+        </div>
+
+        <div class="split">
+          <div v-for="col in how.split" :key="col.label" class="split__col">
+            <p class="split__label">{{ col.label }}</p>
+            <h3 class="split__title">{{ col.title }}</h3>
+            <p class="split__desc">{{ col.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 04 · Principles ============ -->
+    <section class="section" id="principles">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head__body">
+            <h2 class="sec-head__title">{{ principles.title }}</h2>
+          </div>
+        </div>
+
+        <div class="principles">
+          <article v-for="item in principles.items" :key="item.idx" class="principle">
+            <p class="principle__idx">{{ item.idx }}</p>
+            <h3 class="principle__title">{{ item.title }}</h3>
+            <p class="principle__desc">{{ item.desc }}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 05 · Install ============ -->
+    <section class="section" id="install">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head__body">
+            <h2 class="sec-head__title">{{ install.title }}</h2>
+            <p class="lede">{{ install.lede }}</p>
+          </div>
+        </div>
+
+        <div class="install">
+          <div v-for="(item, i) in install.cards" :key="item.title" class="os">
+            <p class="os__label">{{ item.label }}</p>
+            <h3 class="os__title">{{ item.title }}</h3>
+            <ul class="os__list">
+              <li v-for="line in item.list" :key="line">{{ line }}</li>
+            </ul>
+            <span class="os__cmd">{{ item.cmd }}</span>
+            <div v-if="i === 0" class="os__actions">
+              <a class="btn btn--primary" :href="storeUrl" target="_blank" rel="noreferrer">
+                {{ item.cta }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="note">
+          <span class="note__label">{{ install.note.label }}</span>
+          {{ install.note.text }}
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 06 · FAQ ============ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="sec-head">
+          <div class="sec-head__body">
+            <h2 class="sec-head__title">{{ faq.title }}</h2>
+          </div>
+        </div>
+
+        <div class="faq">
+          <details v-for="(item, i) in faq.items" :key="item.q" class="faq__item">
+            <summary class="faq__q">
+              <span class="faq__idx">Q{{ i + 1 }}</span>
+              {{ item.q }}
+            </summary>
+            <p class="faq__a">{{ item.a }}</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Final CTA ============ -->
+    <section class="section">
+      <div class="container cta">
+        <div>
+          <h2 class="cta__title">{{ t('cta.title') }}</h2>
+          <p class="cta__lede">{{ t('cta.lede') }}</p>
+        </div>
+        <div class="cta__actions">
+          <a class="btn btn--primary btn--lg" :href="storeUrl" target="_blank" rel="noreferrer">
+            {{ t('cta.primary') }}
+          </a>
+          <a class="btn btn--ghost btn--lg" :href="reviewsUrl" target="_blank" rel="noreferrer">
+            {{ t('cta.secondary') }}
+          </a>
+        </div>
+      </div>
+    </section>
   </Layout>
 </template>

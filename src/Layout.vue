@@ -1,24 +1,38 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import { onClickOutside } from '@vueuse/core'
-import { Button } from '@/components/ui/button'
-import { Languages, Check } from 'lucide-vue-next'
 
-const { t, locale } = useI18n()
+const { t, tm, locale } = useI18n()
+
+const withBase = (path: string) => {
+  const base = import.meta.env.BASE_URL
+  const cleanPath = path.startsWith('/') ? path.slice(1) : path
+  return `${base}${cleanPath}`
+}
+
+const chromeUrl =
+  'https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en'
+const reviewsUrl = `${chromeUrl}&tab=reviews`
 
 const showLanguageMenu = ref(false)
-const languageMenuRef = ref(null)
+const languageMenuRef = ref<HTMLElement | null>(null)
 
 onClickOutside(languageMenuRef, () => {
   showLanguageMenu.value = false
 })
 
 const languages = [
-  { code: 'en', label: 'English' },
-  { code: 'zh', label: '中文' },
-  { code: 'ja', label: '日本語' }
+  { code: 'en', label: 'English', short: 'EN' },
+  { code: 'zh', label: '中文', short: '中文' },
+  { code: 'ja', label: '日本語', short: '日本語' }
 ]
+
+const currentShort = computed(
+  () => languages.find((l) => l.code === locale.value)?.short ?? 'EN'
+)
+
+const footerBottom = computed(() => tm('footer.bottom') as unknown as string[])
 
 const setLocale = (lang: string) => {
   locale.value = lang
@@ -28,56 +42,95 @@ const setLocale = (lang: string) => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-background font-sans antialiased text-foreground">
-    <header class="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div class="container mx-auto flex h-14 items-center px-4">
-        <div class="mr-4 flex">
-          <a class="mr-6 flex items-center space-x-2 font-bold" href="index.html">
-            <span>MiaoMint</span>
-          </a>
-          <nav class="flex items-center space-x-6 text-sm font-medium">
-            <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="index.html">{{ t('layout.home') }}</a>
-            <a class="transition-colors hover:text-foreground/80 text-foreground/60" href="privacy.html">{{ t('layout.privacy') }}</a>
-          </nav>
-        </div>
-        <div class="flex flex-1 items-center justify-end space-x-2">
-          <a class="transition-colors hover:text-foreground/80 text-foreground/60 text-sm font-medium mr-2" href="https://konata9.cc/" target="_blank" rel="noreferrer">{{ t('layout.blog') }}</a>
-          <div class="relative" ref="languageMenuRef">
-            <Button variant="ghost" size="icon" @click="showLanguageMenu = !showLanguageMenu" :title="t('layout.language')">
-              <Languages class="h-5 w-5" />
-            </Button>
-            
-            <div 
-              v-if="showLanguageMenu" 
-              class="absolute right-0 top-full mt-2 w-40 rounded-md border bg-popover p-1 text-popover-foreground shadow-md outline-none animate-in fade-in-0 zoom-in-95 z-50"
+  <div class="app">
+    <a class="skip-link" href="#main">{{ t('layout.skip') }}</a>
+
+    <header class="nav">
+      <div class="container nav__inner">
+        <a class="brand" href="index.html">
+          <img :src="withBase('/logo.png')" alt="" width="24" height="24" />
+          MiaoMint
+        </a>
+
+        <nav class="nav__links" aria-label="Sections">
+          <a class="nav__link" href="#features">{{ t('nav.capabilities') }}</a>
+          <a class="nav__link" href="#install">{{ t('nav.install') }}</a>
+          <a class="nav__link" href="privacy.html">{{ t('nav.privacy') }}</a>
+        </nav>
+
+        <div class="nav__right">
+          <div class="lang-wrap" ref="languageMenuRef">
+            <button
+              class="lang-switch"
+              type="button"
+              :aria-label="t('nav.language')"
+              :aria-expanded="showLanguageMenu"
+              @click="showLanguageMenu = !showLanguageMenu"
             >
-              <div 
-                v-for="lang in languages" 
+              {{ currentShort }}
+            </button>
+            <div v-if="showLanguageMenu" class="lang-menu">
+              <button
+                v-for="lang in languages"
                 :key="lang.code"
-                class="relative flex cursor-pointer select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none hover:bg-accent hover:text-accent-foreground"
+                class="lang-item"
+                type="button"
                 @click="setLocale(lang.code)"
               >
-                <span class="mr-2 flex h-4 w-4 items-center justify-center">
-                  <Check v-if="locale === lang.code" class="h-4 w-4" />
+                <span class="lang-item__check">
+                  <svg
+                    v-if="locale === lang.code"
+                    viewBox="0 0 16 16"
+                    width="14"
+                    height="14"
+                    fill="none"
+                    aria-hidden="true"
+                  >
+                    <path d="M3.5 8.5 6.5 11.5 12.5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
                 </span>
                 {{ lang.label }}
-              </div>
+              </button>
             </div>
           </div>
-          <Button size="sm" as-child>
-            <a href="https://chromewebstore.google.com/detail/miaomint-smart-tab-manage/fhbglejcilmhdnmipnjhanffmbijjego?hl=en" target="_blank" rel="noreferrer">{{ t('layout.add_to_chrome') }}</a>
-          </Button>
+
+          <a class="btn btn--primary nav__download" :href="chromeUrl" target="_blank" rel="noreferrer">
+            {{ t('nav.add_to_chrome') }}
+          </a>
         </div>
       </div>
     </header>
-    <main class="flex-1">
+
+    <main id="main">
       <slot />
     </main>
-    <footer class="py-6 md:px-8 md:py-0">
-      <div class="container mx-auto flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row px-4">
-        <p class="text-balance text-center text-sm leading-loose text-muted-foreground md:text-left">
-          {{ t('layout.built_by') }}
-        </p>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__top">
+          <div>
+            <a class="brand" href="index.html">
+              <img :src="withBase('/logo.png')" alt="" width="24" height="24" />
+              MiaoMint
+            </a>
+            <p class="footer__tagline">{{ t('footer.tagline') }}</p>
+          </div>
+          <nav class="footer__links" aria-label="Links">
+            <a class="footer__link" href="privacy.html">{{ t('footer.links.privacy') }}</a>
+            <a class="footer__link" :href="reviewsUrl" target="_blank" rel="noreferrer">
+              {{ t('footer.links.feedback') }}
+            </a>
+            <a class="footer__link" href="https://konata9.cc/" target="_blank" rel="noreferrer">
+              {{ t('footer.links.blog') }}
+            </a>
+            <a class="footer__link" :href="chromeUrl" target="_blank" rel="noreferrer">
+              {{ t('footer.links.store') }}
+            </a>
+          </nav>
+        </div>
+        <div class="footer__bottom">
+          <span v-for="item in footerBottom" :key="item">{{ item }}</span>
+        </div>
       </div>
     </footer>
   </div>

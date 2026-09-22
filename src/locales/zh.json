@@ -1,100 +1,268 @@
 {
-  "hero": {
-    "title_main": "MiaoMint",
-    "title_sub": "浏览器里的 Spotlight",
-    "headline_prefix": "搜索标签页、书签和历史记录",
-    "headline_highlight": "使用 Alt/Opt + M",
-    "description": "一个轻量级的 Chrome 扩展，为浏览器带来 Spotlight 风格的搜索体验。快速、私密且完全免费。",
-    "btn_add": "添加到 Chrome - 免费",
-    "badge_shortcut": "Alt/Opt + M"
-  },
-  "core_features": {
-    "title": "为什么选择 MiaoMint？",
-    "hybrid_title": "混合搜索",
-    "hybrid_desc": "同时搜索打开的标签页、书签和浏览历史。智能去重与排序。",
-    "hybrid_meta": "/b 书签 • /h 历史 • /freq 推荐 • /dup 重复标签",
-    "keyboard_title": "键盘优先",
-    "keyboard_desc": "为键盘党设计。无需鼠标即可流畅操作。所有核心功能仅需一次按键。",
-    "keyboard_meta": "Alt/Opt+M • ↑/↓ • Enter • Esc",
-    "privacy_title": "隐私至上",
-    "privacy_desc": "所有数据本地处理。无服务器，无追踪，无数据收集。您的浏览数据仅保留在您的设备上。",
-    "privacy_meta": "100% 本地处理 • 无遥测"
-  },
-  "shortcuts": {
-    "title": "为速度而生",
-    "subtitle": "掌握快捷键，脱离鼠标束缚。",
-    "core_title": "核心快捷键",
-    "advanced_title": "高级功能",
-    "tab_management": "标签管理",
-    "open_close": "打开/关闭搜索",
-    "navigate": "导航结果",
-    "open_selected": "打开选中项",
-    "close": "关闭搜索",
-    "force_web": "强制网页搜索",
-    "bookmark_search": "搜索书签",
-    "history_search": "搜索历史记录",
-    "frequent_search": "智能推荐",
-    "duplicate_search": "重复标签页",
-    "open_settings": "打开设置",
-    "close_tab": "关闭标签页",
-    "toggle_duplicate": "切换重复模式",
-    "close_all_duplicates": "关闭所有重复"
-  },
-  "features_detail": {
-    "title": "强大功能",
-    "subtitle": "为现代浏览体验而设计",
-    "smart_title": "智能推荐",
-    "smart_desc": "基于访问频率和时间的智能推荐，快速找到常用页面。",
-    "duplicate_title": "重复检测",
-    "duplicate_desc": "自动识别重复标签页，支持批量关闭，保持浏览器整洁。",
-    "customizable_title": "个性化定制",
-    "customizable_desc": "支持主题切换、透明度调节和多语言界面。",
-    "performance_title": "性能优化",
-    "performance_desc": "轻量级设计，快速启动，不影响浏览器性能。",
-    "secure_title": "安全可靠",
-    "secure_desc": "所有数据本地处理，不上传任何个人信息。",
-    "feedback_title": "意见反馈",
-    "feedback_desc": "如有问题或建议，欢迎通过 Chrome 应用商店联系我们。"
-  },
-  "techstack": {
-    "title": "现代技术栈构建",
-    "vue": "响应式 UI",
-    "ts": "类型安全",
-    "vite": "极速构建",
-    "tailwind": "原子化 CSS",
-    "crx": "扩展 API"
-  },
-  "features": {
-    "tag_fast": "快速",
-    "tag_keyboard": "键盘优先",
-    "tag_privacy": "隐私专注",
-    "title": "功能预览",
-    "subtitle": "围绕一个核心流程设计：唤起、搜索、打开。",
-    "unified_title": "统一搜索",
-    "unified_desc": "一个输入框搞定标签页、书签、历史记录、URL 导航和网页搜索。",
-    "keyboard_title": "键盘工作流",
-    "keyboard_desc": "Alt/Opt + M 打开，↑/↓ 导航，回车打开，Esc 关闭。",
-    "command_title": "命令模式",
-    "command_desc": "使用 /b 搜书签，/h 搜历史，/freq 智能推荐，/dup 重复标签，/setting 打开设置。",
-    "polished_title": "精致与个性化",
-    "polished_desc": "支持主题、透明度控制和多语言界面，即时更新。",
-    "privacy_title": "隐私设计",
-    "privacy_desc": "无后端。你的数据仅保留在设备上，仅用于搜索和导航。"
-  },
-  "cta": {
-    "title": "准备好提升工作流了吗？",
-    "desc": "加入那些不再翻找标签页，而是即刻触达的用户行列。",
-    "btn_add": "免费添加到 Chrome",
-    "btn_feedback": "意见反馈",
-    "footer": "免费使用 • 本地数据 • 无追踪"
-  },
-  "layout": {
-    "home": "首页",
+  "nav": {
+    "capabilities": "功能",
+    "install": "安装",
     "privacy": "隐私",
     "blog": "博客",
-    "language": "切换语言",
-    "add_to_chrome": "添加到 Chrome",
-    "built_by": "由 Konata9 构建。"
+    "language": "语言",
+    "add_to_chrome": "添加到 Chrome"
+  },
+  "hero": {
+    "eyebrow": "Chrome 扩展 · 命令面板",
+    "title": "任何标签页、书签或网页，都不用离开键盘。",
+    "lede": "MiaoMint 在任意页面上打开一个 Spotlight 式的命令面板。在一个输入框里搜索已打开的标签页、书签和历史记录，然后直接跳转。",
+    "cta_primary": "添加到 Chrome — 免费",
+    "cta_secondary": "意见反馈",
+    "facts": [
+      "免费 · 无付费版本",
+      "Chrome + Chromium",
+      "v1.1.1",
+      "离线可用",
+      "4 种语言",
+      "无需账号"
+    ]
+  },
+  "commandCard": {
+    "file": "miaomint — 命令面板",
+    "chip": "仅本地",
+    "openLabel": "任意页面唤起",
+    "openCmd": "Alt/Opt + M",
+    "openDesc": "打开面板",
+    "modesLabel": "搜索模式",
+    "modes": [
+      { "cmd": "/b", "label": "书签" },
+      { "cmd": "/h", "label": "历史记录" },
+      { "cmd": "/freq", "label": "智能推荐" },
+      { "cmd": "/dup", "label": "重复标签页" },
+      { "cmd": "/set", "label": "设置" }
+    ],
+    "keysLabel": "快捷键",
+    "keys": [
+      { "key": "↑ ↓", "label": "选择" },
+      { "key": "Enter", "label": "打开" },
+      { "key": "Esc", "label": "关闭" },
+      { "key": "Cmd/Ctrl + Enter", "label": "网页搜索" }
+    ],
+    "foot": ["无后端", "无遥测", "4 种语言"]
+  },
+  "sources": {
+    "label": "一个输入框，搜索五个来源",
+    "items": ["打开的标签页", "书签", "历史记录", "网址直达", "网页搜索"]
+  },
+  "tour": {
+    "title": "看看实际用起来是什么样。",
+    "lede": "以下每一张都是扩展的真实截图，运行在真实页面上。",
+    "slides": [
+      {
+        "title": "统一搜索",
+        "desc": "一个输入框搜索已打开的标签页、书签、历史记录、网址和网页搜索，自动排序与去重。"
+      },
+      {
+        "title": "标签页",
+        "desc": "所有打开的标签页列在一起，当前标签页排在最前。"
+      },
+      {
+        "title": "书签",
+        "desc": "输入 /b 搜索书签。需要时才加载，启动依然很快。"
+      },
+      {
+        "title": "历史记录",
+        "desc": "输入 /h 搜索访问过的页面，不必预先加载全部历史。"
+      },
+      {
+        "title": "个性化",
+        "desc": "主题、窗口透明度和界面语言，保存到 Chrome 同步。"
+      },
+      {
+        "title": "演示",
+        "desc": "Alt/Opt + M、方向键、回车、Esc，完整的唤起-搜索-打开流程。"
+      }
+    ]
+  },
+  "features": {
+    "title": "它能做什么，以及数据从哪来。",
+    "lede": "每一项能力都标注了数据来源。从浏览器读取的内容，始终留在浏览器里。",
+    "columns": ["能力", "做什么", "范围"],
+    "items": [
+      {
+        "name": "混合搜索",
+        "sub": "标签页 · 书签 · 历史记录",
+        "desc": "一个输入框同时查询三者并自动去重，同一个页面无论开着还是上周看过，都只出现一次。",
+        "mode": "核心"
+      },
+      {
+        "name": "键盘优先",
+        "sub": "Alt/Opt + M",
+        "desc": "快捷键唤起，方向键移动，回车打开，Esc 关闭。整个过程不用碰鼠标。",
+        "mode": "键盘"
+      },
+      {
+        "name": "重复标签页清理",
+        "sub": "/dup",
+        "desc": "把所有重复的标签页列在一起，一次操作关掉多余的。没有按键就不会关闭任何标签页。",
+        "mode": "清理"
+      },
+      {
+        "name": "智能推荐",
+        "sub": "/freq",
+        "desc": "常用和最近访问的页面会自动浮现，按使用频率和最近使用时间排序。排序在本机完成。",
+        "mode": "排序"
+      },
+      {
+        "name": "命令模式",
+        "sub": "/b /h /freq /dup /set",
+        "desc": "用前缀切换搜索范围，而不是翻菜单：书签、历史、推荐、重复标签页或设置。",
+        "mode": "模式"
+      },
+      {
+        "name": "个性化",
+        "sub": "主题 · 透明度 · 语言",
+        "desc": "选择主题、调整窗口透明度、切换界面语言。偏好通过 Chrome 同步，而不是通过我们。",
+        "mode": "界面"
+      }
+    ]
+  },
+  "how": {
+    "title": "唤起，搜索，打开。",
+    "lede": "三个步骤，只有第三步会改变屏幕上的东西。",
+    "steps": [
+      {
+        "idx": "01",
+        "title": "唤起",
+        "desc": "在任意页面按 Alt/Opt + M。面板在页面加载时即注入，无需等待页面渲染完成。"
+      },
+      {
+        "idx": "02",
+        "title": "搜索",
+        "desc": "一个输入框同时查询已打开的标签页、书签和历史记录，自动去重，并把最可能的结果排在最前。"
+      },
+      {
+        "idx": "03",
+        "title": "打开",
+        "desc": "回车打开结果，Delete 关闭标签页，或一次关闭所有重复标签页。不会写入任何数据。"
+      }
+    ],
+    "split": [
+      {
+        "label": "读取",
+        "title": "本地且离线",
+        "desc": "标签页、书签和历史记录只在浏览器内存中读取，搜索不需要任何网络请求。"
+      },
+      {
+        "label": "写入",
+        "title": "不存储任何数据",
+        "desc": "没有后端，也没有统计埋点。浏览数据不会上传，也不会离开设备。"
+      }
+    ]
+  },
+  "principles": {
+    "title": "不会打破的原则。",
+    "items": [
+      {
+        "idx": "P1",
+        "title": "数据不离开你的设备",
+        "desc": "标签页、书签和历史记录只在内存中读取和搜索，没有后端可以上传。"
+      },
+      {
+        "idx": "P2",
+        "title": "无需账号、无需登录",
+        "desc": "装上就能用。不要邮箱，不要登录，不要个人资料。"
+      },
+      {
+        "idx": "P3",
+        "title": "即时，且轻量",
+        "desc": "页面加载时立即注入，书签和历史记录按需加载，不会拖慢浏览器。"
+      },
+      {
+        "idx": "P4",
+        "title": "永久免费",
+        "desc": "所有功能都在同一个免费扩展里。没有付费版本，没有订阅，没有升级推销。"
+      }
+    ]
+  },
+  "install": {
+    "title": "一键添加。",
+    "lede": "从 Chrome 应用商店安装即可开始搜索。无需配置，无需账号。",
+    "cards": [
+      {
+        "label": "Chrome 应用商店",
+        "title": "一键安装，无需配置",
+        "list": [
+          "直接从 Chrome 应用商店安装。",
+          "适用于 Chrome 及基于 Chromium 的浏览器。",
+          "无需账号，无需登录，无需引导。"
+        ],
+        "cmd": "Chrome 应用商店 · 免费",
+        "cta": "添加到 Chrome"
+      },
+      {
+        "label": "运行要求",
+        "title": "轻量设计",
+        "list": [
+          "Chrome 或任意基于 Chromium 的浏览器。",
+          "无后端、无遥测、无账号。",
+          "书签和历史记录只在需要时加载。"
+        ],
+        "cmd": "Manifest V3 · document_start 注入"
+      }
+    ],
+    "note": {
+      "label": "权限说明",
+      "text": "MiaoMint 读取标签页、书签和历史记录，仅用于搜索。需要访问所有网站的权限，是为了把面板注入到你访问的任意页面——除显示搜索栏外，不会读取页面内容。"
+    }
+  },
+  "faq": {
+    "title": "你可能想知道。",
+    "items": [
+      {
+        "q": "它和 Chrome 自带的标签页搜索有什么不同？",
+        "a": "Chrome 的标签页搜索只看打开的标签页。MiaoMint 在同一个输入框里搜索标签页、书签和历史记录，还提供重复检测和基于频率的推荐，并可在任意页面用 Alt/Opt + M 唤起。"
+      },
+      {
+        "q": "真的免费吗？",
+        "a": "是。MiaoMint 免费使用，没有付费版本，不需要订阅，也不需要账号。"
+      },
+      {
+        "q": "它会收集哪些数据？",
+        "a": "不收集任何数据。没有后端，也没有统计埋点。标签页、书签和历史记录都在浏览器本地处理，不会上传。"
+      },
+      {
+        "q": "为什么需要访问所有网站的权限？",
+        "a": "搜索框需要注入到你当前所在的页面，快捷键才能在任何地方生效。除显示搜索框外，MiaoMint 不会读取页面内容。"
+      },
+      {
+        "q": "离线能用吗？",
+        "a": "可以。搜索在本地完成，没有网络也能用。网页搜索回退会使用你的默认搜索引擎。"
+      },
+      {
+        "q": "支持哪些语言？",
+        "a": "英语、简体中文、繁体中文和日语，随时可以在设置里切换。"
+      },
+      {
+        "q": "我的设置保存在哪里？",
+        "a": "主题、透明度和语言通过 chrome.storage.sync 保存，可以在登录同一账号的 Chrome 设备之间同步。"
+      }
+    ]
+  },
+  "cta": {
+    "title": "把它指向你的标签页，看看都有什么。",
+    "lede": "免费、仅本地，在你选中结果之前只读。",
+    "primary": "免费添加到 Chrome",
+    "secondary": "意见反馈"
+  },
+  "footer": {
+    "tagline": "本地优先。无后端。一键即达。",
+    "links": {
+      "privacy": "隐私",
+      "feedback": "意见反馈",
+      "blog": "博客",
+      "store": "Chrome 应用商店"
+    },
+    "bottom": ["免费 · 无付费版本", "v1.1.1", "与 Google 无关联。"]
+  },
+  "layout": {
+    "language": "语言",
+    "skip": "跳到内容"
   },
   "meta": {
     "title": "MiaoMint — Chrome 标签页、书签和历史记录的命令面板",
@@ -135,8 +303,8 @@
     "your_rights_title": "5. 您的权利",
     "your_rights_text": "由于我们不收集您的数据，因此没有数据可供我们在收到请求时删除或导出。您可以完全控制扩展程序存储的本地数据：",
     "your_rights_list": {
-        "item1": "您可以卸载扩展程序以立即删除所有相关的本地数据。",
-        "item2": "如果您启用了 Chrome 同步，您可以通过浏览器同步设置禁用同步或清除同步数据。"
+      "item1": "您可以卸载扩展程序以立即删除所有相关的本地数据。",
+      "item2": "如果您启用了 Chrome 同步，您可以通过浏览器同步设置禁用同步或清除同步数据。"
     },
     "changes_title": "6. 本政策的变更",
     "changes_text": "我们可能会不时更新本隐私政策。如果我们做出重大更改，我们将通过更新本政策顶部的日期来通知您，并在适当的情况下通过扩展程序通知您。",
